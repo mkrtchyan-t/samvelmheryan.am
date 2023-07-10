@@ -46,6 +46,25 @@ $("#owl-clients").owlCarousel
 });
 });
 
+$(document).ready(function() {
+$("#films").owlCarousel({
+    items: 4,
+    itemsCustom : [
+        [0, 1],
+        [480, 2],
+        [768, 3],
+        [992, 4]
+        ],
+    }); 	
+$("#owl-clients").owlCarousel
+({
+    navigation : false, // Show next and prev buttons
+    slideSpeed : 300,
+    autoHeight : true,
+    singleItem:true
+});
+});
+
 
 /* sticky navigation
 ----------------------------------------------*/
