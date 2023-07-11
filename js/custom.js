@@ -48,7 +48,7 @@ $("#owl-clients").owlCarousel
 
 $(document).ready(function() {
 $("#films").owlCarousel({
-    items: 4,
+    items: 2,
     itemsCustom : [
         [0, 1],
         [480, 2],
