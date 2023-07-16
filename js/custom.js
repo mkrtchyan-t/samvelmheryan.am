@@ -37,13 +37,6 @@ $("#screenshots").owlCarousel({
 		[992, 4]
 		],
     }); 	
-$("#owl-clients").owlCarousel
-({
-	navigation : false, // Show next and prev buttons
-	slideSpeed : 300,
-	autoHeight : true,
-	singleItem:true
-});
 });
 
 $(document).ready(function() {
@@ -55,14 +48,7 @@ $("#films").owlCarousel({
         [768, 3],
         [992, 4]
         ],
-    }); 	
-$("#owl-clients").owlCarousel
-({
-    navigation : false, // Show next and prev buttons
-    slideSpeed : 300,
-    autoHeight : true,
-    singleItem:true
-});
+    });
 });
 
 
