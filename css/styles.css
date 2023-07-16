@@ -1037,3 +1037,9 @@ and (orientation : landscape) {
 	}
 
 }
+
+#autobiography {
+	padding: 15px; /* Add padding to give space around the paragraph */
+	background-color: rgba(17, 8, 8, 0.5);
+  }
+  
