@@ -1037,3 +1037,8 @@ and (orientation : landscape) {
 	}
 
 }
+
+#autobiography {
+	padding: 15px;
+	background-color: rgba(17, 8, 8, 0.2);
+}
