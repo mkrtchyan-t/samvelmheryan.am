@@ -60,7 +60,7 @@ a:hover {
   padding-top: 80px;
   background-color: grey;
   /* background-blend-mode: multiply; */
-  padding: 15%;
+  /* padding: 15%; */
 }
 .is-sticky .navbar-default {
   background: rgba(0, 0, 0, 0.87);
@@ -1041,4 +1041,13 @@ and (orientation : landscape) {
 #autobiography {
 	padding: 15px;
 	background-color: rgba(17, 8, 8, 0.2);
+}
+
+
+.carousel .item {
+	height: 0;
+	padding-bottom: 25%; /* 16:9 aspect ratio */
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
