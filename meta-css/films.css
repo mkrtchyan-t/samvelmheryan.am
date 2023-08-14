@@ -10,4 +10,13 @@ body {
 	background-size: 100%;
 	/* filter: blur(8px);
 	-webkit-filter: blur(8px); */
-  }
+}
+
+.youtube-video {
+	aspect-ratio: 16 / 9;
+	width: 90%;
+}
+
+.h4	{
+	line-height: 200px;
+}
