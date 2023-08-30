@@ -29,9 +29,9 @@ $('.navbar-collapse ul li a').click(function() {
 ----------------------------------------------*/
 $(document).ready(function() {
 $("#screenshots").owlCarousel({
-	items: 4,
+	items: 5,
 	itemsCustom : [
-		[0, 1],
+		[0, 2],
 		[480, 2],
 		[768, 3],
 		[992, 4]
@@ -41,9 +41,9 @@ $("#screenshots").owlCarousel({
 
 $(document).ready(function() {
 $("#films").owlCarousel({
-    items: 2,
+    items: 3,
     itemsCustom : [
-        [0, 1],
+        [0, 2],
         [480, 2],
         [768, 3],
         [992, 4]
