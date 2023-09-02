@@ -4,7 +4,7 @@
 dir_path="./"
 
 # Counter for naming
-index=1
+index=37
 
 # Loop through each image file in the directory
 for file in "$dir_path"*.jpg "$dir_path"*.JPG; do

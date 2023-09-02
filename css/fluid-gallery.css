@@ -39,6 +39,15 @@ body {
     width: 100%;
     border-radius: 0;
     position: relative;
+    object-fit:cover;
+}
+
+.tz-gallery .lightbox img .small-pic {
+    width: 100%;
+    height: 250px;
+    border-radius: 0;
+    position: relative;
+    object-fit:cover;
 }
 
 .tz-gallery .lightbox:before {
