@@ -51,6 +51,17 @@ $("#films").owlCarousel({
     });
 });
 
+$(document).ready(function() {
+$("#gallerys").owlCarousel({
+    items: 20,
+    itemsCustom : [
+        [0, 3],
+        [480, 4],
+        [768, 5],
+        [992, 6]
+        ],
+    });
+});
 
 /* sticky navigation
 ----------------------------------------------*/
