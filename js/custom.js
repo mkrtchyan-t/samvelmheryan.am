@@ -63,10 +63,22 @@ $("#gallerys").owlCarousel({
     });
 });
 
+$(document).ready(function() {
+$("#reportage").owlCarousel({
+    items: 20,
+    itemsCustom : [
+        [0, 2],
+        [480, 2],
+        [768, 3],
+        [992, 4]
+        ],
+    });
+});
+
 /* sticky navigation
 ----------------------------------------------*/
   $(document).ready(function(){
-    $("#menu").sticky({topSpacing:0});
+    $("#menu").sticky({topSpacing:0.3});
   });
 
 
