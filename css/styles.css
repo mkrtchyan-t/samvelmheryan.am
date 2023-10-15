@@ -1054,7 +1054,7 @@ and (orientation : landscape) {
 
 .video-container {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr); /* This creates a 3-column grid */
+	grid-template-columns: repeat(2, 1fr); /* This creates a 3-column grid */
 	gap: 10px; /* Space between videos */
 	width: 100%;
 	max-width: 960px; /* This is optional, you can set this to whatever width you want */

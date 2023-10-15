@@ -75,6 +75,19 @@ $("#reportage").owlCarousel({
     });
 });
 
+$(document).ready(function() {
+    $("#audiobook").owlCarousel({
+        items: 20,
+        itemsCustom : [
+            [0, 2],
+            [480, 2],
+            [768, 3],
+            [992, 4]
+            ],
+        });
+    });
+    
+
 /* sticky navigation
 ----------------------------------------------*/
   $(document).ready(function(){
