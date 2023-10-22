@@ -1,0 +1,54 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #ffffff;
+	background-image: url("../images/dvd/ajb-ke-audio-bg.jpg");
+	background-color: rgb(255, 255, 255);
+	background-blend-mode: multiply;
+	/* background-repeat: no-repeat; */
+	background-size: 100%;
+	/* filter: blur(8px);
+	-webkit-filter: blur(8px); */
+}
+
+.audio-wrapper {
+    display: flex;
+    align-items: center; /* aligns items at the top of the container */
+    gap: 5px; /* space between title and audio player */
+    background-color: #eec182; /* optional: just for better visualization */
+    padding: 10px; /* optional: space around the title and audio player */
+    border-radius: 5px; /* optional: rounded corners for the wrapper */
+	margin: 2%;
+}
+.audio-title {
+    font-weight: bold;
+    font-size: 1.2em;
+	color: black;
+}
+
+audio::-webkit-media-controls-panel {
+	background-color: #eec182;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center the main container vertically on the page */
+    /* height: 100vh; Take full viewport height */
+}
+
+.centered-content {
+	display: grid;
+    grid-template-columns: 1fr 1fr; /* Create 2 equal-width columns */
+    gap: 10px; /* Spacing between audio tracks */
+    width: 90%; /* Adjust as needed to control the grid's width */
+    max-width: 768px; /* Adjust as needed to control the max width */
+}
+
+@media screen and (max-width: 768px) { /* Adjust 768px to whatever breakpoint you want */
+    .centered-content {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
