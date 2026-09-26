@@ -107,24 +107,6 @@ const carouselSlides = [
     </div>
   </section>
 
-  <!-- ===== Audiobooks placeholder ===== -->
-  <section id="audiobooks" class="hero-section" style="background-image:url('/images/books-bg.webp')">
-    <div class="container">
-      <h2 class="section-title">Աուդիոգրքեր</h2>
-      <div class="title-line"></div>
-      <p class="coming-soon">Շուտով...</p>
-    </div>
-  </section>
-
-  <!-- ===== Reportages placeholder ===== -->
-  <section id="reportages" class="hero-section" style="background-image:url('/images/khnous2.webp')">
-    <div class="container">
-      <h2 class="section-title">Ռեպորտաժներ</h2>
-      <div class="title-line"></div>
-      <p class="coming-soon">Շուտով...</p>
-    </div>
-  </section>
-
   <!-- ===== Gallery ===== -->
   <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.webp')">
     <div class="container">
@@ -133,7 +115,7 @@ const carouselSlides = [
       <div class="gallery-grid">
         {galleryPreview.map((n, i) => (
           <div
-            class={`gallery-item fade-in${i === 3 ? ' wide' : ''}`}
+            class="gallery-item fade-in"
             data-lightbox-src={`/images/gallery/${n}.webp`}
             data-lightbox-alt={`Նկար ${n}`}
             role="button"

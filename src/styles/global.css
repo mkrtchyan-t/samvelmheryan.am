@@ -249,7 +249,7 @@ p { margin-bottom: 1em; }
   overflow: hidden;
   margin-top: 2.5rem;
   border-radius: 4px;
-  aspect-ratio: 16/7;
+  aspect-ratio: 4/1;
 }
 
 .carousel-track {
@@ -359,14 +359,14 @@ p { margin-bottom: 1em; }
   position: relative;
   overflow: hidden;
   border-radius: 6px;
-  aspect-ratio: 4/3;
   background: #111;
 }
 
 .film-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
   transition: transform 0.4s ease;
 }
 
@@ -400,15 +400,12 @@ p { margin-bottom: 1em; }
   gap: 0.5rem;
 }
 
-.gallery-grid .wide {
-  grid-column: span 2;
-}
-
 .gallery-item {
   overflow: hidden;
   border-radius: 4px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   background: #222;
+  cursor: pointer;
 }
 
 .gallery-item img {
@@ -442,7 +439,6 @@ p { margin-bottom: 1em; }
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .gallery-grid .wide { grid-column: span 1; }
 }
 
 /* ===== Audiobooks & Reportages ===== */
