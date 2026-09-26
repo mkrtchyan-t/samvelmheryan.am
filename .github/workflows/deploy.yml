@@ -4,6 +4,30 @@ on:
   push:
     branches: [master, modernize]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options: [staging, prod]
+
+# ── Secrets required (Settings → Secrets → Actions) ─────────────────
+#   DEPLOY_HOST  — server IP or hostname       (e.g. 123.45.67.89)
+#   DEPLOY_USER  — SSH user                    (e.g. ubuntu)
+#   DEPLOY_KEY   — full private SSH key text   (~/.ssh/id_rsa content)
+#
+# ── Folder layout on the server ─────────────────────────────────────
+#   /var/www/samvelmheryan.am/
+#     prod/       ← served at samvelmheryan.am
+#     staging/    ← served at staging.samvelmheryan.am (or /staging)
+#
+#   Files identical between prod and staging (images) are hardlinked
+#   via rsync --link-dest, so they take zero extra disk space.
+# ────────────────────────────────────────────────────────────────────
+
+env:
+  DEPLOY_BASE: /var/www/samvelmheryan.am
 
 jobs:
   build:
@@ -34,48 +58,55 @@ jobs:
           retention-days: 1
 
   deploy:
-    name: Deploy
+    name: Deploy → ${{ github.ref == 'refs/heads/master' && 'prod' || 'staging' }}
     needs: build
     runs-on: ubuntu-latest
-    # Only deploy on pushes to master (the "live" branch)
-    # Change this to `modernize` to deploy that branch while testing
-    if: github.ref == 'refs/heads/master'
 
     steps:
+      - name: Resolve ENV_FOLDER
+        id: env
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "folder=${{ github.event.inputs.environment }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            echo "folder=prod" >> "$GITHUB_OUTPUT"
+          else
+            echo "folder=staging" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist/
 
-      # ── When you have a server, fill in these 3 secrets in your repo: ──
-      #   Settings → Secrets → Actions:
-      #     DEPLOY_HOST  — server IP or hostname  (e.g. 123.45.67.89)
-      #     DEPLOY_USER  — SSH user               (e.g. ubuntu)
-      #     DEPLOY_KEY   — private SSH key content (the full ~/.ssh/id_rsa text)
-      #
-      #   And set DEPLOY_PATH below to the folder nginx/Apache serves from.
-      # ────────────────────────────────────────────────────────────────────
-
       - name: Deploy via rsync over SSH
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
-          DEPLOY_PATH: /var/www/samvelmheryan.am/html
+          ENV_FOLDER:  ${{ steps.env.outputs.folder }}
         run: |
-          # Write the private key to a temp file
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-
-          # Add host to known_hosts to avoid interactive prompt
           ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
-          # Sync the dist/ folder to the server
+          DEPLOY_PATH="$DEPLOY_BASE/$ENV_FOLDER"
+          PROD_PATH="$DEPLOY_BASE/prod"
+
+          # Ensure the target folder exists on the server
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=yes \
+              "$DEPLOY_USER@$DEPLOY_HOST" \
+              "mkdir -p $DEPLOY_PATH"
+
+          # --link-dest: files identical to prod (i.e. all images) become
+          # hardlinks instead of copies → staging images use zero extra disk.
           rsync -az --delete \
+            --link-dest="$PROD_PATH" \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
             dist/ \
             "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
 
-          echo "Deployed to $DEPLOY_HOST:$DEPLOY_PATH"
+          echo "✓ Deployed to $DEPLOY_HOST:$DEPLOY_PATH"
