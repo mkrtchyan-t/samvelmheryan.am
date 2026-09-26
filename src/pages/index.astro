@@ -5,25 +5,25 @@ import Carousel from '../components/Carousel.astro';
 import Lightbox from '../components/Lightbox.astro';
 
 const books = [
-  { href: '/lonely-eagle', src: '/images/lonely-eagle.png', alt: 'Մենավոր Բազեն' },
-  { href: '/and-there-were-light', src: '/images/and-there-were-light.png', alt: 'Եւ եղաւ լոյս' },
-  { href: '/before-the-storm', src: '/images/before-the-storm.png', alt: 'Փոթորկից առաջ' },
-  { href: '/ayb-ke', src: '/images/ajb-ke.png', alt: 'Այբ Քէ' },
-  { href: null, src: '/images/turkish.png', alt: 'Yalnız Şahin (թուրքերեն)' },
+  { href: '/lonely-eagle', src: '/images/lonely-eagle.webp', alt: 'Մենավոր Բազեն' },
+  { href: '/and-there-were-light', src: '/images/and-there-were-light.webp', alt: 'Եւ եղաւ լոյս' },
+  { href: '/before-the-storm', src: '/images/before-the-storm.webp', alt: 'Փոթորկից առաջ' },
+  { href: '/ayb-ke', src: '/images/ajb-ke.webp', alt: 'Այբ Քէ' },
+  { href: null, src: '/images/turkish.webp', alt: 'Yalnız Şahin (թուրքերեն)' },
 ];
 
 const films = [
-  { href: '/garden-of-eden', src: '/images/garden-of-eden.jpg', alt: 'Եդեմի Պարտեզը' },
-  { href: '/road-back-home', src: '/images/road-back-home-dvd.png', alt: 'Տունդարձի ճամփան' },
-  { href: '/film-project', src: '/images/film-project.jpg', alt: 'Կինոպրոյեկտ' },
+  { href: '/garden-of-eden', src: '/images/garden-of-eden.webp', alt: 'Եդեմի Պարտեզը' },
+  { href: '/road-back-home', src: '/images/road-back-home-dvd.webp', alt: 'Տունդարձի ճամփան' },
+  { href: '/film-project', src: '/images/film-project.webp', alt: 'Կինոպրոյեկտ' },
 ];
 
 const galleryPreview = [19, 29, 21, 28, 22, 27];
 
 const carouselSlides = [
-  { src: '/images/banner1.jpg', alt: 'Նկար 1' },
-  { src: '/images/banner2.jpg', alt: 'Նկար 2' },
-  { src: '/images/banner3.jpg', alt: 'Նկար 3' },
+  { src: '/images/banner1.webp', alt: 'Նկար 1' },
+  { src: '/images/banner2.webp', alt: 'Նկար 2' },
+  { src: '/images/banner3.webp', alt: 'Նկար 3' },
 ];
 ---
 
@@ -35,7 +35,7 @@ const carouselSlides = [
     <div class="container">
       <div class="autobiography-grid fade-in">
         <img
-          src="/images/author-bg.png"
+          src="/images/author-bg.webp"
           alt="Սամվել Մհերյան"
           width="320"
           height="480"
@@ -72,7 +72,7 @@ const carouselSlides = [
   </section>
 
   <!-- ===== Books ===== -->
-  <section id="books" class="hero-section" style="background-image:url('/images/books-bg.jpg')">
+  <section id="books" class="hero-section" style="background-image:url('/images/books-bg.webp')">
     <div class="container">
       <h2 class="section-title fade-in">Գրքեր</h2>
       <div class="title-line fade-in"></div>
@@ -92,7 +92,7 @@ const carouselSlides = [
   </section>
 
   <!-- ===== Films ===== -->
-  <section id="film" class="hero-section" style="background-image:url('/images/khnous2.jpg')">
+  <section id="film" class="hero-section" style="background-image:url('/images/khnous2.webp')">
     <div class="container">
       <h2 class="section-title fade-in">Ֆիլմագրություն</h2>
       <div class="title-line fade-in"></div>
@@ -108,7 +108,7 @@ const carouselSlides = [
   </section>
 
   <!-- ===== Audiobooks placeholder ===== -->
-  <section id="audiobooks" class="hero-section" style="background-image:url('/images/books-bg.jpg')">
+  <section id="audiobooks" class="hero-section" style="background-image:url('/images/books-bg.webp')">
     <div class="container">
       <h2 class="section-title">Աուդիոգրքեր</h2>
       <div class="title-line"></div>
@@ -117,7 +117,7 @@ const carouselSlides = [
   </section>
 
   <!-- ===== Reportages placeholder ===== -->
-  <section id="reportages" class="hero-section" style="background-image:url('/images/khnous2.jpg')">
+  <section id="reportages" class="hero-section" style="background-image:url('/images/khnous2.webp')">
     <div class="container">
       <h2 class="section-title">Ռեպորտաժներ</h2>
       <div class="title-line"></div>
@@ -126,7 +126,7 @@ const carouselSlides = [
   </section>
 
   <!-- ===== Gallery ===== -->
-  <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.jpg')">
+  <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.webp')">
     <div class="container">
       <h2 class="section-title fade-in">Պատկերասրահ</h2>
       <div class="title-line fade-in"></div>
@@ -134,14 +134,14 @@ const carouselSlides = [
         {galleryPreview.map((n, i) => (
           <div
             class={`gallery-item fade-in${i === 3 ? ' wide' : ''}`}
-            data-lightbox-src={`/images/gallery/${n}.jpg`}
+            data-lightbox-src={`/images/gallery/${n}.webp`}
             data-lightbox-alt={`Նկար ${n}`}
             role="button"
             tabindex="0"
             aria-label={`Բացել նկար ${n}`}
           >
             <img
-              src={`/images/gallery/${n}.jpg`}
+              src={`/images/gallery/${n}.webp`}
               alt={`Պատկերասրահ ${n}`}
               loading="lazy"
             >

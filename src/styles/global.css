@@ -207,7 +207,7 @@ p { margin-bottom: 1em; }
 
 /* ===== Autobiography Section ===== */
 #autobiography-section {
-  background-image: url('/images/khnous.jpg');
+  background-image: url('/images/khnous.webp');
 }
 
 .autobiography-grid {
@@ -312,7 +312,7 @@ p { margin-bottom: 1em; }
 
 /* ===== Books Section ===== */
 #books-section {
-  background-image: url('/images/books-bg.jpg');
+  background-image: url('/images/books-bg.webp');
 }
 
 .books-scroll {
@@ -345,7 +345,7 @@ p { margin-bottom: 1em; }
 
 /* ===== Films Section ===== */
 #films-section {
-  background-image: url('/images/khnous2.jpg');
+  background-image: url('/images/khnous2.webp');
 }
 
 .films-grid {
@@ -391,7 +391,7 @@ p { margin-bottom: 1em; }
 
 /* ===== Gallery Section ===== */
 #gallery-section {
-  background-image: url('/images/gallery-bg.jpg');
+  background-image: url('/images/gallery-bg.webp');
 }
 
 .gallery-grid {

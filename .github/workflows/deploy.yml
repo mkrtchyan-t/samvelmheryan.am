@@ -1,0 +1,81 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [master, modernize]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    # Only deploy on pushes to master (the "live" branch)
+    # Change this to `modernize` to deploy that branch while testing
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      # ── When you have a server, fill in these 3 secrets in your repo: ──
+      #   Settings → Secrets → Actions:
+      #     DEPLOY_HOST  — server IP or hostname  (e.g. 123.45.67.89)
+      #     DEPLOY_USER  — SSH user               (e.g. ubuntu)
+      #     DEPLOY_KEY   — private SSH key content (the full ~/.ssh/id_rsa text)
+      #
+      #   And set DEPLOY_PATH below to the folder nginx/Apache serves from.
+      # ────────────────────────────────────────────────────────────────────
+
+      - name: Deploy via rsync over SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_PATH: /var/www/samvelmheryan.am/html
+        run: |
+          # Write the private key to a temp file
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # Add host to known_hosts to avoid interactive prompt
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+          # Sync the dist/ folder to the server
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            dist/ \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+
+          echo "Deployed to $DEPLOY_HOST:$DEPLOY_PATH"
