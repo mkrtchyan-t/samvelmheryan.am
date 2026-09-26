@@ -1,0 +1,64 @@
+---
+interface Props {
+  slides: { src: string; alt: string }[];
+}
+const { slides } = Astro.props;
+---
+<div class="banner-carousel" aria-label="Լուրեր">
+  <div class="carousel-track" id="carousel-track">
+    {slides.map((s, i) => (
+      <div
+        class="carousel-slide"
+        style={`background-image:url('${s.src}')`}
+        role="img"
+        aria-label={s.alt}
+        aria-hidden={i !== 0 ? 'true' : undefined}
+      />
+    ))}
+  </div>
+
+  <button class="carousel-btn prev" aria-label="Նախորդ">&#8249;</button>
+  <button class="carousel-btn next" aria-label="Հաջորդ">&#8250;</button>
+
+  <div class="carousel-dots" role="tablist">
+    {slides.map((_, i) => (
+      <button
+        class={`carousel-dot${i === 0 ? ' active' : ''}`}
+        aria-label={`Սլայդ ${i + 1}`}
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+      />
+    ))}
+  </div>
+</div>
+
+<script>
+  const track = document.getElementById('carousel-track') as HTMLElement;
+  const dots = Array.from(document.querySelectorAll('.carousel-dot')) as HTMLButtonElement[];
+  const total = track.children.length;
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function go(idx: number) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+      d.setAttribute('aria-selected', String(i === current));
+    });
+    Array.from(track.children).forEach((slide, i) => {
+      (slide as HTMLElement).setAttribute('aria-hidden', i !== current ? 'true' : 'false');
+    });
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => go(current + 1), 5000);
+  }
+
+  document.querySelector('.carousel-btn.prev')!.addEventListener('click', () => { go(current - 1); startTimer(); });
+  document.querySelector('.carousel-btn.next')!.addEventListener('click', () => { go(current + 1); startTimer(); });
+  dots.forEach((d, i) => d.addEventListener('click', () => { go(i); startTimer(); }));
+
+  startTimer();
+</script>

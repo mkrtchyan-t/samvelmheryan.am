@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Carousel from '../components/Carousel.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const books = [
+  { href: '/lonely-eagle', src: '/images/lonely-eagle.png', alt: 'Մենավոր Բազեն' },
+  { href: '/and-there-were-light', src: '/images/and-there-were-light.png', alt: 'Եւ եղաւ լոյս' },
+  { href: '/before-the-storm', src: '/images/before-the-storm.png', alt: 'Փոթորկից առաջ' },
+  { href: '/ayb-ke', src: '/images/ajb-ke.png', alt: 'Այբ Քէ' },
+  { href: null, src: '/images/turkish.png', alt: 'Yalnız Şahin (թուրքերեն)' },
+];
+
+const films = [
+  { href: '/garden-of-eden', src: '/images/garden-of-eden.jpg', alt: 'Եդեմի Պարտեզը' },
+  { href: '/road-back-home', src: '/images/road-back-home-dvd.png', alt: 'Տունդարձի ճամփան' },
+  { href: '/film-project', src: '/images/film-project.jpg', alt: 'Կինոպրոյեկտ' },
+];
+
+const galleryPreview = [19, 29, 21, 28, 22, 27];
+
+const carouselSlides = [
+  { src: '/images/banner1.jpg', alt: 'Նկար 1' },
+  { src: '/images/banner2.jpg', alt: 'Նկար 2' },
+  { src: '/images/banner3.jpg', alt: 'Նկար 3' },
+];
+---
+
+<Layout title="Սամվել Մհերյան">
+  <Nav />
+
+  <!-- ===== Autobiography ===== -->
+  <section id="autobiography-section" class="hero-section">
+    <div class="container">
+      <div class="autobiography-grid fade-in">
+        <img
+          src="/images/author-bg.png"
+          alt="Սամվել Մհերյան"
+          width="320"
+          height="480"
+          loading="eager"
+          fetchpriority="high"
+        >
+        <div class="autobiography-text">
+          <p>
+            Մհերյանը գրական և մշակութային իր գործունեությամբ հասարակությանը հայտնի է
+            առավելապես իր հեղինակած «Մենավոր բազեն», «Եւ եղաւ լոյս», «Փոթորկից առաջ»
+            պատմավեպերով, ինչպես նաև «Եդեմի պարտեզը» և «Տունդարձի ճամփան»
+            փաստագրական ֆիլմերով: Նրա կատարած աշխատանքներն են «Ճշմարիտ Լույսը»
+            և «Այբ-Քէ» բանաստեղծությունների ժողովածուները, որոնք արտահայտում են
+            քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես
+            ապաշխարության և փառաբանության խոնարհ աղոթականչեր...
+          </p>
+          <p>
+            «Մենավոր Բազեն» պատմավեպը, որը տեխնիկական կրթություն ստացած Մհերյանի
+            առաջին քայլն է գրականության մեջ, լույս ընծայվեց, երբ հեղինակը 28 տարեկան
+            էր: Գրքի 120 կերպարներից մեծ մասը իրական են, որոնցից շատերի ժառանգները
+            համախմբվելով մեկ գաղափարի շուրջ, 2005թ.-ի փետրվարին՝ Զորավար Անդրանիկի
+            ծննդյան 140 ամյակի օրը հիմնադրում են «Խնուս» մշակութային հիմնադրամը:
+          </p>
+          <p>
+            Գրիքը երկու հրատարակությամբ (Samvel Mheryan «Yalniz Sahin», Fam Yayinlari,
+            Istanbul 2018, 2020թթ.), թուրքերեն լեզվով լույս է ընծայուել Թուրքիայում
+            և վաճառվում է Կ. Պոլսի գրախանութներում:
+          </p>
+        </div>
+      </div>
+
+      <Carousel slides={carouselSlides} />
+    </div>
+  </section>
+
+  <!-- ===== Books ===== -->
+  <section id="books" class="hero-section" style="background-image:url('/images/books-bg.jpg')">
+    <div class="container">
+      <h2 class="section-title fade-in">Գրքեր</h2>
+      <div class="title-line fade-in"></div>
+      <div class="books-scroll">
+        {books.map(book => (
+          <div class="book-card fade-in">
+            {book.href
+              ? <a href={book.href}>
+                  <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
+                </a>
+              : <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
+            }
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Films ===== -->
+  <section id="film" class="hero-section" style="background-image:url('/images/khnous2.jpg')">
+    <div class="container">
+      <h2 class="section-title fade-in">Ֆիլմագրություն</h2>
+      <div class="title-line fade-in"></div>
+      <div class="films-grid">
+        {films.map(film => (
+          <a href={film.href} class="film-card fade-in">
+            <img src={film.src} alt={film.alt} loading="lazy">
+            <div class="film-card-overlay">{film.alt}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Audiobooks placeholder ===== -->
+  <section id="audiobooks" class="hero-section" style="background-image:url('/images/books-bg.jpg')">
+    <div class="container">
+      <h2 class="section-title">Աուդիոգրքեր</h2>
+      <div class="title-line"></div>
+      <p class="coming-soon">Շուտով...</p>
+    </div>
+  </section>
+
+  <!-- ===== Reportages placeholder ===== -->
+  <section id="reportages" class="hero-section" style="background-image:url('/images/khnous2.jpg')">
+    <div class="container">
+      <h2 class="section-title">Ռեպորտաժներ</h2>
+      <div class="title-line"></div>
+      <p class="coming-soon">Շուտով...</p>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.jpg')">
+    <div class="container">
+      <h2 class="section-title fade-in">Պատկերասրահ</h2>
+      <div class="title-line fade-in"></div>
+      <div class="gallery-grid">
+        {galleryPreview.map((n, i) => (
+          <div
+            class={`gallery-item fade-in${i === 3 ? ' wide' : ''}`}
+            data-lightbox-src={`/images/gallery/${n}.jpg`}
+            data-lightbox-alt={`Նկար ${n}`}
+            role="button"
+            tabindex="0"
+            aria-label={`Բացել նկար ${n}`}
+          >
+            <img
+              src={`/images/gallery/${n}.jpg`}
+              alt={`Պատկերասրահ ${n}`}
+              loading="lazy"
+            >
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center">
+        <a href="/gallery" class="see-more-btn">Տեսնել ավելին</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer id="footer">
+    <ul class="social-links">
+      <li>
+        <a href="https://www.facebook.com/samvel.mheryan" aria-label="Facebook" rel="noopener">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/samvel-mheryan-5953b4178/" aria-label="LinkedIn" rel="noopener">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:contact@samvelmheryan.am" aria-label="Էլ. փոստ">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </li>
+    </ul>
+    <p>© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
+    <a href="#" class="back-to-top" aria-label="Վերև"><i class="fa-solid fa-circle-chevron-up"></i></a>
+  </footer>
+
+  <Lightbox />
+</Layout>
+
+<script>
+  // Fade-in on scroll using IntersectionObserver (replaces WOW.js)
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { (e.target as HTMLElement).classList.add('visible'); } }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>

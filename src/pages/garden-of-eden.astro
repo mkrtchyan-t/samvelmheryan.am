@@ -1,0 +1,46 @@
+---
+import SubpageLayout from '../layouts/SubpageLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const galleryImgs = Array.from({ length: 13 }, (_, i) => ({
+  src: `/images/garden-of-eden/${i + 1}.jpg`,
+  alt: `Եդեմի Պարտեզը — նկար ${i + 1}`,
+}));
+---
+<SubpageLayout title="Եդեմի Պարտեզը" backHref="/#film">
+  <h1 class="page-header">Եդեմի Պարտեզը <small>սիրողական ֆիլմ</small></h1>
+
+  <div class="detail-grid">
+    <img src="/images/garden-of-eden-dvd.png" alt="Եդեմի Պարտեզը" width="240" height="300" loading="eager">
+    <div class="detail-text">
+      <p>Սամվել Մհերյանի սիրողական վավերագրական ֆիլմ:</p>
+      <div style="margin-top:1rem;">
+        <iframe
+          src="https://www.youtube.com/embed/Gkn4Cx4xCkA"
+          title="Եդեմի Պարտեզը"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+          style="width:100%;aspect-ratio:16/9;border-radius:4px;"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="section-label">Միջոցառումներ</h3>
+  <div class="gallery-page-grid">
+    {galleryImgs.map(img => (
+      <div
+        class="gallery-page-item"
+        data-lightbox-src={img.src}
+        data-lightbox-alt={img.alt}
+        role="button" tabindex="0" aria-label={`Բացել՝ ${img.alt}`}
+      >
+        <img src={img.src} alt={img.alt} loading="lazy">
+      </div>
+    ))}
+  </div>
+
+  <Lightbox />
+</SubpageLayout>

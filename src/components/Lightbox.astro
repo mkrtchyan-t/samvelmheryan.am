@@ -1,0 +1,50 @@
+---
+---
+<!-- Shared lightbox dialog - one instance, reused for all images -->
+<dialog id="lightbox" class="lightbox-dialog" aria-label="Նկար">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" aria-label="Փակել">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="" loading="lazy">
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement;
+  const img = document.getElementById('lightbox-img') as HTMLImageElement;
+
+  function openLightbox(src: string, alt: string) {
+    img.src = src;
+    img.alt = alt;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    dialog.close();
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+
+  dialog.querySelector('.lightbox-close')!.addEventListener('click', closeLightbox);
+
+  // Click outside image closes it
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) closeLightbox();
+  });
+
+  // Esc key handled natively by <dialog>
+  dialog.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+
+  // Listen for trigger clicks (data-lightbox-src)
+  document.addEventListener('click', (e) => {
+    const trigger = (e.target as HTMLElement).closest('[data-lightbox-src]') as HTMLElement | null;
+    if (!trigger) return;
+    e.preventDefault();
+    openLightbox(
+      trigger.dataset.lightboxSrc!,
+      trigger.dataset.lightboxAlt ?? ''
+    );
+  });
+</script>

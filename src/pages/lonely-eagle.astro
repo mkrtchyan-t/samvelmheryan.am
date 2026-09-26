@@ -1,0 +1,70 @@
+---
+import SubpageLayout from '../layouts/SubpageLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const pages = [1, 2, 3, 4].map(n => ({
+  src: `/images/Menavor-Bazen_page-000${n}.jpg`,
+  alt: `Մենավոր Բազեն — էջ ${n}`,
+}));
+
+const events = [1, 2, 3].map(n => ({
+  src: `/images/meta-lonely-eagle-${n}.jpg`,
+  alt: `Շնորհանդես ${n}`,
+}));
+---
+<SubpageLayout title="Մենավոր Բազեն" backHref="/#books">
+  <h1 class="page-header">ՄԵՆԱՎՈՐ ԲԱԶԵՆ <small>պատմավեպ</small></h1>
+
+  <div class="detail-grid">
+    <img src="/images/lonely-eagle.png" alt="Մենավոր Բազեն" width="240" height="360" loading="eager">
+    <div class="detail-text">
+      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2007թ. · 2010թ. · 2014թ.</p>
+      <p>
+        «Մենավոր բազեն» վեպում նկարագրվում է Օսմանյան Կայսրության հայահալած
+        քաղաքականության ամենաարյունալի ժամանակաշրջանը՝ XIX դարի կեսերից մինչև
+        Առաջին համաշխարհային պատերազմի տարիները։
+      </p>
+      <p>
+        Վեպում նկարագրվում է, թե ինչ անդրադարձ են ունեցել Խնուս (Հարք) գավառի
+        վրա սուլթան Աբդուլ Համիդի օրոք՝ 1893–95 թ., Արևմտյան Հայաստանում և
+        Կիլիկիայում հայերի հանդեպ իրականացված կոտորածները, և ինչ նշանակություն
+        է ունեցել բարեփոխումների մասին սուլթանի հրամանագիրը (1908թ.)։
+        Գիրքն ավարտվում է 1915 թ. Հայոց Մեծ եղեռնով։
+      </p>
+      <p>
+        Վեպը թուրքերեն լեզվով երկու հրատարակությամբ (Fam Yayinlari, Istanbul
+        2018, 2020թթ.) լույս է ընծայուել Թուրքիայում։
+      </p>
+    </div>
+  </div>
+
+  <h3 class="section-label">Հատված գրքից</h3>
+  <div class="image-grid">
+    {pages.map(p => (
+      <div
+        class="image-grid-item"
+        data-lightbox-src={p.src}
+        data-lightbox-alt={p.alt}
+        role="button" tabindex="0" aria-label={`Բացել՝ ${p.alt}`}
+      >
+        <img src={p.src} alt={p.alt} loading="lazy">
+      </div>
+    ))}
+  </div>
+
+  <h3 class="section-label">Շնորհանդեսներ</h3>
+  <div class="image-grid">
+    {events.map(e => (
+      <div
+        class="image-grid-item"
+        data-lightbox-src={e.src}
+        data-lightbox-alt={e.alt}
+        role="button" tabindex="0" aria-label={`Բացել՝ ${e.alt}`}
+      >
+        <img src={e.src} alt={e.alt} loading="lazy">
+      </div>
+    ))}
+  </div>
+
+  <Lightbox />
+</SubpageLayout>
