@@ -13,21 +13,12 @@ on:
         options: [staging, prod]
 
 # ── Secrets required (Settings → Secrets → Actions) ─────────────────
-#   DEPLOY_HOST  — server IP or hostname       (e.g. 123.45.67.89)
-#   DEPLOY_USER  — SSH user                    (e.g. ubuntu)
-#   DEPLOY_KEY   — full private SSH key text   (~/.ssh/id_rsa content)
+#   FTP_PASSWORD — cPanel / FTP account password for samvelmheryan
 #
 # ── Folder layout on the server ─────────────────────────────────────
-#   /var/www/samvelmheryan.am/
-#     prod/       ← served at samvelmheryan.am
-#     staging/    ← served at staging.samvelmheryan.am (or /staging)
-#
-#   Files identical between prod and staging (images) are hardlinked
-#   via rsync --link-dest, so they take zero extra disk space.
+#   /home/samvelmheryan/public_html/          ← samvelmheryan.am (prod)
+#   /home/samvelmheryan/public_html/staging/  ← samvelmheryan.am/staging
 # ────────────────────────────────────────────────────────────────────
-
-env:
-  DEPLOY_BASE: /var/www/samvelmheryan.am
 
 jobs:
   build:
@@ -63,16 +54,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Resolve ENV_FOLDER
+      - name: Resolve remote path
         id: env
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "folder=${{ github.event.inputs.environment }}" >> "$GITHUB_OUTPUT"
+            ENV="${{ github.event.inputs.environment }}"
           elif [ "${{ github.ref }}" = "refs/heads/master" ]; then
-            echo "folder=prod" >> "$GITHUB_OUTPUT"
+            ENV="prod"
           else
-            echo "folder=staging" >> "$GITHUB_OUTPUT"
+            ENV="staging"
           fi
+
+          if [ "$ENV" = "prod" ]; then
+            echo "path=/home/samvelmheryan/public_html" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=/home/samvelmheryan/public_html/staging" >> "$GITHUB_OUTPUT"
+          fi
+          echo "env=$ENV" >> "$GITHUB_OUTPUT"
 
       - name: Download build artifact
         uses: actions/download-artifact@v4
@@ -80,33 +78,17 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Deploy via rsync over SSH
-        env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_KEY:  ${{ secrets.DEPLOY_KEY }}
-          ENV_FOLDER:  ${{ steps.env.outputs.folder }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.samvelmheryan.am
+          username: samvelmheryan
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ${{ steps.env.outputs.path }}/
+          dangerous-clean-slate: false
 
-          DEPLOY_PATH="$DEPLOY_BASE/$ENV_FOLDER"
-          PROD_PATH="$DEPLOY_BASE/prod"
-
-          # Ensure the target folder exists on the server
-          ssh -i ~/.ssh/deploy_key \
-              -o StrictHostKeyChecking=yes \
-              "$DEPLOY_USER@$DEPLOY_HOST" \
-              "mkdir -p $DEPLOY_PATH"
-
-          # --link-dest: files identical to prod (i.e. all images) become
-          # hardlinks instead of copies → staging images use zero extra disk.
-          rsync -az --delete \
-            --link-dest="$PROD_PATH" \
-            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
-            dist/ \
-            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
-
-          echo "✓ Deployed to $DEPLOY_HOST:$DEPLOY_PATH"
+      - name: Done
+        run: echo "✓ Deployed to ${{ steps.env.outputs.env }} (${{ steps.env.outputs.path }})"
