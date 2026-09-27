@@ -16,8 +16,8 @@ on:
 #   FTP_PASSWORD — cPanel / FTP account password for samvelmheryan
 #
 # ── Folder layout on the server ─────────────────────────────────────
-#   /home/samvelmheryan/public_html/          ← samvelmheryan.am (prod)
-#   /home/samvelmheryan/public_html/staging/  ← samvelmheryan.am/staging
+#   /home/samvelmheryan/public_html/  ← samvelmheryan.am (prod)
+#   /home/samvelmheryan/staging/      ← staging.samvelmheryan.am
 # ────────────────────────────────────────────────────────────────────
 
 jobs:
@@ -68,7 +68,7 @@ jobs:
           if [ "$ENV" = "prod" ]; then
             echo "path=/home/samvelmheryan/public_html" >> "$GITHUB_OUTPUT"
           else
-            echo "path=/home/samvelmheryan/public_html/staging" >> "$GITHUB_OUTPUT"
+            echo "path=/home/samvelmheryan/staging" >> "$GITHUB_OUTPUT"
           fi
           echo "env=$ENV" >> "$GITHUB_OUTPUT"
 
