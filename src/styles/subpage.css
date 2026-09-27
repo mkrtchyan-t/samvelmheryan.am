@@ -54,14 +54,15 @@
 /* ===== Page header ===== */
 .page-header {
   font-size: clamp(1.5rem, 4vw, 2.4rem);
-  border-bottom: 2px solid #eee;
+  color: #fff;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
 }
 
 .page-header small {
   font-size: 0.55em;
-  color: var(--color-text-light);
+  color: rgba(255,255,255,0.6);
   font-weight: 300;
   margin-left: 0.5rem;
 }
@@ -80,13 +81,13 @@
 }
 
 .detail-meta {
-  color: var(--color-text-light);
+  color: rgba(255,255,255,0.7);
   font-size: 0.95rem;
   margin-bottom: 1rem;
 }
 
 .detail-text p {
-  color: var(--color-text);
+  color: rgba(255,255,255,0.9);
   line-height: 1.85;
 }
 
@@ -100,7 +101,8 @@
 /* ===== Image grid (book pages / gallery) ===== */
 .section-label {
   font-size: 1.3rem;
-  border-bottom: 1px solid #eee;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
   padding-bottom: 0.4rem;
   margin-bottom: 1.25rem;
   margin-top: 2.5rem;
