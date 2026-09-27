@@ -1,0 +1,94 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [master, modernize]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options: [staging, prod]
+
+# ── Secrets required (Settings → Secrets → Actions) ─────────────────
+#   FTP_PASSWORD — cPanel / FTP account password for samvelmheryan
+#
+# ── Folder layout on the server ─────────────────────────────────────
+#   /home/samvelmheryan/public_html/  ← samvelmheryan.am (prod)
+#   /home/samvelmheryan/staging/      ← staging.samvelmheryan.am
+# ────────────────────────────────────────────────────────────────────
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    name: Deploy → ${{ github.ref == 'refs/heads/master' && 'prod' || 'staging' }}
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Resolve remote path
+        id: env
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ENV="${{ github.event.inputs.environment }}"
+          elif [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            ENV="prod"
+          else
+            ENV="staging"
+          fi
+
+          if [ "$ENV" = "prod" ]; then
+            echo "path=public_html/" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=staging/" >> "$GITHUB_OUTPUT"
+          fi
+          echo "env=$ENV" >> "$GITHUB_OUTPUT"
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.samvelmheryan.am
+          username: samvelmheryan
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: dist/
+          server-dir: ${{ steps.env.outputs.path }}
+          dangerous-clean-slate: false
+
+      - name: Done
+        run: echo "✓ Deployed to ${{ steps.env.outputs.env }} (${{ steps.env.outputs.path }})"

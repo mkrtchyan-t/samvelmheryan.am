@@ -1,0 +1,47 @@
+---
+import SubpageLayout from '../layouts/SubpageLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+const pages = [1, 2, 3, 4].map(n => ({
+  src: `/images/yev-yeghav-loys-page-000${n}.webp`,
+  alt: `Եւ եղաւ լոյս — էջ ${n}`,
+}));
+---
+<SubpageLayout title="Եւ եղաւ լոյս" backHref="/#books" bgImage="/images/and-there-were-light-bg.webp">
+  <h1 class="page-header">ԵՒ ԵՂԱՒ ԼՈՅՍ <small>պատմավէպ</small></h1>
+
+  <div class="detail-grid">
+    <img src="/images/and-there-were-light.webp" alt="Եւ եղաւ լոյս" width="240" height="360" loading="eager">
+    <div class="detail-text">
+      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2019թ.</p>
+      <p>
+        Այս վեպը առաջին դարի սկզբի Հայաստանում տեղի ունեցած պատմական անցուդարձի
+        համառօտ անդրադարձն է՝ քրիստոնեական մտածողութեան դիրքերից։ Այստեղ
+        պատմական փաստերը քաղուած են առաւելապէս Մովսէս Խորենացու «Հայոց Պատմութիւն»֊ից։
+      </p>
+      <p>
+        Գրքում նկարագրւում է, թէ ինչպիսի ծանր յետեւանք ունեցաւ Հռովմի կայսերական
+        վերելքը հայկական տիրապետութեան վրայ, եւ թէ ինչպիսի իրավիճակում էր
+        Եդեսիոյ Հայոց պետականութիւնը՝ Աբգար V թագաւորի օրօք։ Պալատական
+        խարդաւանքներ, ազնուական վսեմապատումներ, քանարական֊սիրային պոռթկումներ՝
+        դիտարկած ազգային եւ կրօնական բուռն վայրիվերոյքի համայնապատկերում։
+      </p>
+    </div>
+  </div>
+
+  <h3 class="section-label">Հատված գրքից</h3>
+  <div class="image-grid">
+    {pages.map(p => (
+      <div
+        class="image-grid-item"
+        data-lightbox-src={p.src}
+        data-lightbox-alt={p.alt}
+        role="button" tabindex="0" aria-label={`Բացել՝ ${p.alt}`}
+      >
+        <img src={p.src} alt={p.alt} loading="lazy">
+      </div>
+    ))}
+  </div>
+
+  <Lightbox />
+</SubpageLayout>
