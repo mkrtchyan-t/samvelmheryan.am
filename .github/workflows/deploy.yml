@@ -66,9 +66,9 @@ jobs:
           fi
 
           if [ "$ENV" = "prod" ]; then
-            echo "path=/home/samvelmheryan/public_html" >> "$GITHUB_OUTPUT"
+            echo "path=public_html/" >> "$GITHUB_OUTPUT"
           else
-            echo "path=/home/samvelmheryan/staging" >> "$GITHUB_OUTPUT"
+            echo "path=staging/" >> "$GITHUB_OUTPUT"
           fi
           echo "env=$ENV" >> "$GITHUB_OUTPUT"
 
@@ -87,7 +87,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: dist/
-          server-dir: ${{ steps.env.outputs.path }}/
+          server-dir: ${{ steps.env.outputs.path }}
           dangerous-clean-slate: false
 
       - name: Done
