@@ -5,9 +5,10 @@ import '../styles/subpage.css';
 interface Props {
   title: string;
   backHref: string;
+  bgImage?: string;
 }
 
-const { title, backHref } = Astro.props;
+const { title, backHref, bgImage } = Astro.props;
 ---
 <!doctype html>
 <html lang="hy">
@@ -43,7 +44,7 @@ const { title, backHref } = Astro.props;
     </div>
   </nav>
 
-  <main class="sub-main">
+  <main class="sub-main" style={bgImage ? `background-image:url('${bgImage}')` : undefined}>
     <div class="container">
       <slot />
     </div>

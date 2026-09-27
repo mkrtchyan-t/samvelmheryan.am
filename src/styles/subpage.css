@@ -23,7 +23,21 @@
 
 .sub-main {
   padding: 2.5rem 0 4rem;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
+
+.sub-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+.sub-main > * { position: relative; }
 
 .sub-footer {
   background: var(--color-dark);
