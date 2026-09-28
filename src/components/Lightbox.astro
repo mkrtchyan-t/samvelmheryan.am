@@ -2,7 +2,19 @@
 ---
 <dialog id="lightbox" class="lb-dialog" aria-label="Նկար">
   <div class="lb-inner">
-    <button class="lb-close" aria-label="Փակել">&#x2715;</button>
+    <button class="lb-close" aria-label="Փակել">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <line x1="4" y1="4" x2="18" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="18" y1="4" x2="4" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <a id="lb-download" class="lb-download" aria-label="Բեռնել" download>
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <line x1="11" y1="3" x2="11" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <polyline points="6,11 11,16 16,11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <line x1="4" y1="19" x2="18" y2="19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </a>
     <button class="lb-prev" aria-label="Նախորդ">&#8249;</button>
     <div class="lb-img-wrap">
       <img id="lb-img" src="" alt="" loading="lazy">
@@ -16,18 +28,24 @@
 .lb-dialog {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   background: rgba(0,0,0,0.93);
   border: none;
   padding: 0;
+  margin: 0;
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  overflow: hidden;
 }
 .lb-dialog[open] { display: flex; }
-.lb-dialog::backdrop { background: transparent; }
+.lb-dialog::backdrop {
+  background: rgba(0,0,0,0.93);
+}
 
 .lb-inner {
   position: relative;
@@ -58,18 +76,34 @@
 
 .lb-close {
   position: fixed;
-  top: 1rem;
+  top: 1.1rem;
   right: 1.25rem;
   background: none;
   border: none;
   color: rgba(255,255,255,0.7);
-  font-size: 2rem;
-  line-height: 1;
   cursor: pointer;
   z-index: 2;
   transition: color 0.15s;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lb-close:hover { color: #fff; }
+
+.lb-download {
+  position: fixed;
+  top: 1rem;
+  right: 3.75rem;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  z-index: 2;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lb-download:hover { color: #fff; }
 
 .lb-prev,
 .lb-next {
@@ -121,9 +155,10 @@
 </style>
 
 <script>
-const dialog  = document.getElementById('lightbox') as HTMLDialogElement;
-const imgEl   = document.getElementById('lb-img') as HTMLImageElement;
-const counter = document.getElementById('lb-counter') as HTMLElement;
+const dialog   = document.getElementById('lightbox') as HTMLDialogElement;
+const imgEl    = document.getElementById('lb-img') as HTMLImageElement;
+const counter  = document.getElementById('lb-counter') as HTMLElement;
+const dlLink   = document.getElementById('lb-download') as HTMLAnchorElement;
 
 let items: { src: string; alt: string }[] = [];
 let idx = 0;
@@ -135,6 +170,8 @@ function show(i: number) {
   imgEl.alt = items[idx].alt;
   counter.textContent = items.length > 1 ? `${idx + 1} / ${items.length}` : '';
   dialog.classList.toggle('single', items.length === 1);
+  dlLink.href = items[idx].src;
+  dlLink.download = items[idx].src.split('/').pop() ?? 'image';
 }
 
 function open(triggers: NodeListOf<Element> | Element[], clickedSrc: string) {
@@ -178,14 +215,20 @@ dialog.addEventListener('touchend', e => {
   if (Math.abs(dx) > 50) show(dx < 0 ? idx + 1 : idx - 1);
 });
 
-// Delegate: any [data-lightbox-src] click collects siblings in same container
+// Delegate: any [data-lightbox-src] click collects all items in the nearest gallery container
 document.addEventListener('click', e => {
   const trigger = (e.target as HTMLElement).closest('[data-lightbox-src]') as HTMLElement | null;
   if (!trigger) return;
   e.preventDefault();
-  // Collect all sibling triggers in the nearest common parent
-  const parent = trigger.parentElement!;
-  const siblings = parent.querySelectorAll('[data-lightbox-src]');
-  open(siblings.length > 1 ? siblings : document.querySelectorAll('[data-lightbox-src]'), trigger.dataset.lightboxSrc!);
+  const container = trigger.closest('.gallery-masonry, .gallery-grid, .image-grid, .gallery-page-grid')
+    ?? trigger.parentElement!;
+  let items = Array.from(container.querySelectorAll('[data-lightbox-src]')) as HTMLElement[];
+  // Restore visual order when data-lightbox-index is present (masonry columns)
+  if (items[0]?.dataset.lightboxIndex !== undefined) {
+    items = items.sort((a, b) =>
+      parseInt(a.dataset.lightboxIndex!) - parseInt(b.dataset.lightboxIndex!)
+    );
+  }
+  open(items, trigger.dataset.lightboxSrc!);
 });
 </script>
