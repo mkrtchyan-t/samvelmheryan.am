@@ -8,18 +8,18 @@ const pages = [1, 2, 3, 4].map(n => ({
 }));
 ---
 <SubpageLayout title="Եւ եղաւ լոյս" backHref="/#books" bgImage="/images/and-there-were-light-bg.webp">
-  <h1 class="page-header">ԵՒ ԵՂԱՒ ԼՈՅՍ <small>պատմավէպ</small></h1>
+  <h1 class="page-header"><span data-i18n="atwl.title">ԵՒ ԵՂԱՒ ԼՈՅՍ</span> <small data-i18n="genre.novel">պատմավէպ</small></h1>
 
   <div class="detail-grid">
     <img src="/images/and-there-were-light.webp" alt="Եւ եղաւ լոյս" width="240" height="360" loading="eager">
     <div class="detail-text">
-      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2019թ.</p>
-      <p>
+      <p class="detail-meta" data-i18n="atwl.meta">«Ասողիկ» հրատարակչություն, 2019թ.</p>
+      <p data-i18n="atwl.p1">
         Այս վեպը առաջին դարի սկզբի Հայաստանում տեղի ունեցած պատմական անցուդարձի
         համառօտ անդրադարձն է՝ քրիստոնեական մտածողութեան դիրքերից։ Այստեղ
         պատմական փաստերը քաղուած են առաւելապէս Մովսէս Խորենացու «Հայոց Պատմութիւն»֊ից։
       </p>
-      <p>
+      <p data-i18n="atwl.p2">
         Գրքում նկարագրւում է, թէ ինչպիսի ծանր յետեւանք ունեցաւ Հռովմի կայսերական
         վերելքը հայկական տիրապետութեան վրայ, եւ թէ ինչպիսի իրավիճակում էր
         Եդեսիոյ Հայոց պետականութիւնը՝ Աբգար V թագաւորի օրօք։ Պալատական
@@ -29,7 +29,7 @@ const pages = [1, 2, 3, 4].map(n => ({
     </div>
   </div>
 
-  <h3 class="section-label">Հատված գրքից</h3>
+  <h3 class="section-label" data-i18n="label.excerpt">Հատված գրքից</h3>
   <div class="image-grid">
     {pages.map(p => (
       <div

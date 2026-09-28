@@ -8,7 +8,7 @@ const galleryImgs = Array.from({ length: 13 }, (_, i) => ({
 }));
 ---
 <SubpageLayout title="Եդեմի Պարտեզը" backHref="/#film" bgImage="/images/khnous.webp">
-  <h1 class="page-header">Եդեմի Պարտեզը <small>սիրողական ֆիլմ</small></h1>
+  <h1 class="page-header"><span data-i18n="goe.title">Եդեմի Պարտեզը</span> <small data-i18n="genre.film">սիրողական ֆիլմ</small></h1>
 
   <div class="detail-grid">
     <img src="/images/garden-of-eden-dvd.webp" alt="Եդեմի Պարտեզը" width="240" height="300" loading="eager">
@@ -27,7 +27,7 @@ const galleryImgs = Array.from({ length: 13 }, (_, i) => ({
     </div>
   </div>
 
-  <h3 class="section-label">Միջոցառումներ</h3>
+  <h3 class="section-label" data-i18n="label.events">Միջոցառումներ</h3>
   <div class="gallery-page-grid">
     {galleryImgs.map(img => (
       <div

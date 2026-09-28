@@ -9,6 +9,14 @@
   padding: 0.75rem 0;
 }
 
+.sub-nav .container {
+  display: flex;
+  align-items: center;
+}
+.sub-nav .lang-switcher {
+  margin-left: auto;
+}
+
 .back-link {
   color: rgba(255,255,255,0.8);
   font-size: 0.9rem;

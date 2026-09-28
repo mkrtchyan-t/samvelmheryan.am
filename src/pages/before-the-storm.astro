@@ -8,19 +8,19 @@ const pages = [1, 2, 3, 4].map(n => ({
 }));
 ---
 <SubpageLayout title="Փոթորկից առաջ" backHref="/#books" bgImage="/images/before-the-storm-bg.webp">
-  <h1 class="page-header">ՓՈԹՈՐԿԻՑ ԱՌԱՋ <small>պատմավեպ</small></h1>
+  <h1 class="page-header"><span data-i18n="bts.title">ՓՈԹՈՐԿԻՑ ԱՌԱՋ</span> <small data-i18n="genre.novel">պատմավեպ</small></h1>
 
   <div class="detail-grid">
     <img src="/images/before-the-storm.webp" alt="Փոթորկից առաջ" width="240" height="360" loading="eager">
     <div class="detail-text">
-      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2023թ.</p>
-      <p>
+      <p class="detail-meta" data-i18n="bts.meta">«Ասողիկ» հրատարակչություն, 2023թ.</p>
+      <p data-i18n="bts.p1">
         Վեպը նկարագրում է 3-րդ դարի վերջին Մեծ Հայքի 29-ամյա անիշխանության
         շրջանը, երբ Անակ Պարթևի ձեռքով դավադրաբար սպանվում է Խոսրով արքան,
         իսկ Սասանորդի Արտաշիրը, Պարսկաստանում նվաճելով Արշակունիների հարստությունը
         դիմում է Հայաստան։
       </p>
-      <p>
+      <p data-i18n="bts.p2">
         Ստեղծված խառնաշփոթում հայոց նախարարներից շատերը, փախչելով երկրից,
         ապաստան են գտնում Հռոմում, իսկ մնացածը, հնազանդվելով Արտաշիրի
         իշխանությանը, մնում են նրա հպատակության ներքո։ Այս համայնապատկերում,
@@ -30,7 +30,7 @@ const pages = [1, 2, 3, 4].map(n => ({
     </div>
   </div>
 
-  <h3 class="section-label">Հատված գրքից</h3>
+  <h3 class="section-label" data-i18n="label.excerpt">Հատված գրքից</h3>
   <div class="image-grid">
     {pages.map(p => (
       <div

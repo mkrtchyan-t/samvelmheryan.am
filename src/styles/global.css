@@ -195,6 +195,34 @@ p { margin-bottom: 1em; }
   #nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
 
+/* ===== Language Switcher ===== */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 1.25rem;
+}
+.lang-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.4);
+  font-size: 0.65rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lang-btn:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.8);
+}
+.lang-btn.active {
+  border-color: #b8932a;
+  color: #b8932a;
+}
+
 /* ===== Hero / Parallax Sections ===== */
 .hero-section {
   min-height: 100svh;

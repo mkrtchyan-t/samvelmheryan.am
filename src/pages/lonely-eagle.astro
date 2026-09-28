@@ -13,32 +13,32 @@ const events = [1, 2, 3].map(n => ({
 }));
 ---
 <SubpageLayout title="Մենավոր Բազեն" backHref="/#books" bgImage="/images/lonely-eagle-bg.webp">
-  <h1 class="page-header">ՄԵՆԱՎՈՐ ԲԱԶԵՆ <small>պատմավեպ</small></h1>
+  <h1 class="page-header"><span data-i18n="le.title">ՄԵՆԱՎՈՐ ԲԱԶԵՆ</span> <small data-i18n="genre.novel">պատմավեպ</small></h1>
 
   <div class="detail-grid">
     <img src="/images/lonely-eagle.webp" alt="Մենավոր Բազեն" width="240" height="360" loading="eager">
     <div class="detail-text">
-      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2007թ. · 2010թ. · 2014թ.</p>
-      <p>
+      <p class="detail-meta" data-i18n="le.meta">«Ասողիկ» հրատարակչություն, 2007թ. · 2010թ. · 2014թ.</p>
+      <p data-i18n="le.p1">
         «Մենավոր բազեն» վեպում նկարագրվում է Օսմանյան Կայսրության հայահալած
         քաղաքականության ամենաարյունալի ժամանակաշրջանը՝ XIX դարի կեսերից մինչև
         Առաջին համաշխարհային պատերազմի տարիները։
       </p>
-      <p>
+      <p data-i18n="le.p2">
         Վեպում նկարագրվում է, թե ինչ անդրադարձ են ունեցել Խնուս (Հարք) գավառի
         վրա սուլթան Աբդուլ Համիդի օրոք՝ 1893–95 թ., Արևմտյան Հայաստանում և
         Կիլիկիայում հայերի հանդեպ իրականացված կոտորածները, և ինչ նշանակություն
         է ունեցել բարեփոխումների մասին սուլթանի հրամանագիրը (1908թ.)։
         Գիրքն ավարտվում է 1915 թ. Հայոց Մեծ եղեռնով։
       </p>
-      <p>
+      <p data-i18n="le.p3">
         Վեպը թուրքերեն լեզվով երկու հրատարակությամբ (Fam Yayinlari, Istanbul
         2018, 2020թթ.) լույս է ընծայուել Թուրքիայում։
       </p>
     </div>
   </div>
 
-  <h3 class="section-label">Հատված գրքից</h3>
+  <h3 class="section-label" data-i18n="label.excerpt">Հատված գրքից</h3>
   <div class="image-grid">
     {pages.map(p => (
       <div
@@ -52,7 +52,7 @@ const events = [1, 2, 3].map(n => ({
     ))}
   </div>
 
-  <h3 class="section-label">Շնորհանդեսներ</h3>
+  <h3 class="section-label" data-i18n="label.presentations">Շնորհանդեսներ</h3>
   <div class="image-grid">
     {events.map(e => (
       <div

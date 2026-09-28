@@ -43,7 +43,7 @@ const carouselSlides = [
           fetchpriority="high"
         >
         <div class="autobiography-text">
-          <p>
+          <p data-i18n="bio.p1">
             Մհերյանը գրական և մշակութային իր գործունեությամբ հասարակությանը հայտնի է
             առավելապես իր հեղինակած «Մենավոր բազեն», «Եւ եղաւ լոյս», «Փոթորկից առաջ»
             պատմավեպերով, ինչպես նաև «Եդեմի պարտեզը» և «Տունդարձի ճամփան»
@@ -52,14 +52,14 @@ const carouselSlides = [
             քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես
             ապաշխարության և փառաբանության խոնարհ աղոթականչեր...
           </p>
-          <p>
+          <p data-i18n="bio.p2">
             «Մենավոր Բազեն» պատմավեպը, որը տեխնիկական կրթություն ստացած Մհերյանի
             առաջին քայլն է գրականության մեջ, լույս ընծայվեց, երբ հեղինակը 28 տարեկան
             էր: Գրքի 120 կերպարներից մեծ մասը իրական են, որոնցից շատերի ժառանգները
             համախմբվելով մեկ գաղափարի շուրջ, 2005թ.-ի փետրվարին՝ Զորավար Անդրանիկի
             ծննդյան 140 ամյակի օրը հիմնադրում են «Խնուս» մշակութային հիմնադրամը:
           </p>
-          <p>
+          <p data-i18n="bio.p3">
             Գրիքը երկու հրատարակությամբ (Samvel Mheryan «Yalniz Sahin», Fam Yayinlari,
             Istanbul 2018, 2020թթ.), թուրքերեն լեզվով լույս է ընծայուել Թուրքիայում
             և վաճառվում է Կ. Պոլսի գրախանութներում:
@@ -74,7 +74,7 @@ const carouselSlides = [
   <!-- ===== Books ===== -->
   <section id="books" class="hero-section" style="background-image:url('/images/books-bg.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Գրքեր</h2>
+      <h2 class="section-title fade-in" data-i18n="section.books">Գրքեր</h2>
       <div class="title-line fade-in"></div>
       <div class="books-scroll">
         {books.map(book => (
@@ -98,7 +98,7 @@ const carouselSlides = [
   <!-- ===== Films ===== -->
   <section id="film" class="hero-section" style="background-image:url('/images/khnous2.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Ֆիլմագրություն</h2>
+      <h2 class="section-title fade-in" data-i18n="section.films">Ֆիլմագրություն</h2>
       <div class="title-line fade-in"></div>
       <div class="films-grid">
         {films.map(film => (
@@ -114,7 +114,7 @@ const carouselSlides = [
   <!-- ===== Gallery ===== -->
   <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Պատկերասրահ</h2>
+      <h2 class="section-title fade-in" data-i18n="section.gallery">Պատկերասրահ</h2>
       <div class="title-line fade-in"></div>
       <div class="gallery-grid">
         {galleryPreview.map((n, i) => (
@@ -135,7 +135,7 @@ const carouselSlides = [
         ))}
       </div>
       <div style="text-align:center">
-        <a href="/gallery" class="see-more-btn">Տեսնել ավելին</a>
+        <a href="/gallery" class="see-more-btn" data-i18n="ui.seeMore">Տեսնել ավելին</a>
       </div>
     </div>
   </section>
@@ -143,9 +143,9 @@ const carouselSlides = [
   <!-- ===== Contact ===== -->
   <footer id="contact">
     <div class="contact-inner">
-      <h2 class="section-title">ԿԱՊ</h2>
+      <h2 class="section-title" data-i18n="section.contact">ԿԱՊ</h2>
       <div class="title-line"></div>
-      <p class="contact-sub">Հարցերի կամ համագործակցության համար՝</p>
+      <p class="contact-sub" data-i18n="contact.sub">Հարցերի կամ համագործակցության համար՝</p>
 
       <div class="contact-cards">
         <a href="https://www.facebook.com/samvel.mheryan" class="contact-card contact-card--fb" rel="noopener" target="_blank">
@@ -156,7 +156,7 @@ const carouselSlides = [
           <span class="contact-card-handle">Սամվել Մհերյան</span>
           <span class="contact-fb-btn">
             <i class="fa-brands fa-facebook-f"></i>
-            Հետևել
+            <span data-i18n="contact.follow">Հետևել</span>
           </span>
         </a>
 
@@ -164,7 +164,7 @@ const carouselSlides = [
           <div class="contact-card-icon">
             <i class="fa-regular fa-envelope"></i>
           </div>
-          <span class="contact-card-label">Էլ. փոստ</span>
+          <span class="contact-card-label" data-i18n="contact.emailLabel">Էլ. փոստ</span>
           <span class="contact-card-handle">contact@samvelmheryan.am</span>
         </a>
 
@@ -177,7 +177,7 @@ const carouselSlides = [
         </a>
       </div>
 
-      <p class="contact-copy">© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
+      <p class="contact-copy" data-i18n="contact.copy">© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
     </div>
     <a href="#" class="back-to-top" aria-label="Вeреv"><i class="fa-solid fa-circle-chevron-up"></i></a>
   </footer>

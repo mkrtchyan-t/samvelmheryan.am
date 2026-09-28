@@ -34,13 +34,19 @@ const { title, backHref, bgImage } = Astro.props;
     media="print"
     onload="this.media='all'"
   >
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <nav class="sub-nav">
     <div class="container">
       <a href={backHref} class="back-link">
-        <i class="fa fa-arrow-left"></i> Վերադառնալ
+        <i class="fa fa-arrow-left"></i><span data-i18n="sub.back"> Վերադառնալ</span>
       </a>
+      <div class="lang-switcher" aria-label="Language">
+        <button class="lang-btn" data-lang="hy">ՀԱՅ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+      </div>
     </div>
   </nav>
 
@@ -52,7 +58,7 @@ const { title, backHref, bgImage } = Astro.props;
 
   <footer class="sub-footer">
     <div class="container">
-      <a href="/">← Գլխավոր էջ</a>
+      <a href="/" data-i18n="sub.home">← Գլխավոր էջ</a>
     </div>
   </footer>
 </body>

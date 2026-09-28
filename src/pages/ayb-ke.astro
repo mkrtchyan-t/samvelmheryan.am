@@ -8,24 +8,24 @@ const pages = [1, 2, 3, 4, 5, 6, 7].map(n => ({
 }));
 ---
 <SubpageLayout title="Այբ-Քէ" backHref="/#books" bgImage="/images/ajb-ke-bg.webp">
-  <h1 class="page-header">ԱՅԲ-ՔԷ <small>աղոթական բանաստեղծությունների ժողովածու</small></h1>
+  <h1 class="page-header"><span data-i18n="ak.title">ԱՅԲ-ՔԷ</span> <small data-i18n="genre.poetry">աղոթական բանաստեղծությունների ժողովածու</small></h1>
 
   <div class="detail-grid">
     <img src="/images/ajb-ke.webp" alt="Այբ-Քէ" width="240" height="360" loading="eager">
     <div class="detail-text">
-      <p class="detail-meta">«Ասողիկ» հրատարակչություն, 2014թ. · 2017թ. · 2018թ. · 2021թ.</p>
-      <p>
+      <p class="detail-meta" data-i18n="ak.meta">«Ասողիկ» հրատարակչություն, 2014թ. · 2017թ. · 2018թ. · 2021թ.</p>
+      <p data-i18n="ak.p1">
         Ես եմ Ալֆան եւ Օմեղան (ԱՅԲ–ը եւ ՔԷ-ն) [սկիզբը եւ վերջը] ասում է Տէրը,
         նա որ էր եւ որ է եւ որ գալու է, Ամենակալը: (Յայտն. 1.8)
       </p>
-      <p>
+      <p data-i18n="ak.p2">
         Այս ժողովածուն արտահայտում է քրիստոնյայի հուզերն ու մտորումները՝ ուղղված
         Արարիչ Աստծուն որպես ապաշխարության և փառաբանության խոնարհ աղոթականչեր...
       </p>
     </div>
   </div>
 
-  <h3 class="section-label">Հատված գրքից</h3>
+  <h3 class="section-label" data-i18n="label.excerpt">Հատված գրքից</h3>
   <div class="image-grid">
     {pages.map(p => (
       <div
