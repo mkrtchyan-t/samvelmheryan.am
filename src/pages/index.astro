@@ -80,10 +80,14 @@ const carouselSlides = [
         {books.map(book => (
           <div class="book-card fade-in">
             {book.href
-              ? <a href={book.href}>
+              ? <a href={book.href} class="book-card-inner">
                   <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
+                  <div class="book-card-overlay">{book.alt}</div>
                 </a>
-              : <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
+              : <div class="book-card-inner">
+                  <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
+                  <div class="book-card-overlay">{book.alt}</div>
+                </div>
             }
           </div>
         ))}
@@ -136,27 +140,46 @@ const carouselSlides = [
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
-  <footer id="footer">
-    <ul class="social-links">
-      <li>
-        <a href="https://www.facebook.com/samvel.mheryan" aria-label="Facebook" rel="noopener">
-          <i class="fa-brands fa-facebook-f"></i>
+  <!-- ===== Contact ===== -->
+  <footer id="contact">
+    <div class="contact-inner">
+      <h2 class="section-title">ԿԱՊ</h2>
+      <div class="title-line"></div>
+      <p class="contact-sub">Հարցերի կամ համագործակցության համար՝</p>
+
+      <div class="contact-cards">
+        <a href="https://www.facebook.com/samvel.mheryan" class="contact-card contact-card--fb" rel="noopener" target="_blank">
+          <div class="contact-card-icon contact-card-icon--fb">
+            <i class="fa-brands fa-facebook-f"></i>
+          </div>
+          <span class="contact-card-label">Facebook</span>
+          <span class="contact-card-handle">Սամվել Մհերյան</span>
+          <span class="contact-fb-btn">
+            <i class="fa-brands fa-facebook-f"></i>
+            Հետևել
+          </span>
         </a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/samvel-mheryan-5953b4178/" aria-label="LinkedIn" rel="noopener">
-          <i class="fa-brands fa-linkedin-in"></i>
+
+        <a href="mailto:contact@samvelmheryan.am" class="contact-card contact-card--email">
+          <div class="contact-card-icon">
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+          <span class="contact-card-label">Էլ. փոստ</span>
+          <span class="contact-card-handle">contact@samvelmheryan.am</span>
         </a>
-      </li>
-      <li>
-        <a href="mailto:contact@samvelmheryan.am" aria-label="Էլ. փոստ">
-          <i class="fa-regular fa-envelope"></i>
+
+        <a href="https://www.linkedin.com/in/samvel-mheryan-5953b4178/" class="contact-card contact-card--linkedin" rel="noopener" target="_blank">
+          <div class="contact-card-icon contact-card-icon--li">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </div>
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-handle">Սամվել Մհերյան</span>
         </a>
-      </li>
-    </ul>
-    <p>© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
-    <a href="#" class="back-to-top" aria-label="Վերև"><i class="fa-solid fa-circle-chevron-up"></i></a>
+      </div>
+
+      <p class="contact-copy">© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
+    </div>
+    <a href="#" class="back-to-top" aria-label="Вeреv"><i class="fa-solid fa-circle-chevron-up"></i></a>
   </footer>
 
   <Lightbox />

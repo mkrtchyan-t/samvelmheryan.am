@@ -2,11 +2,10 @@
 import SubpageLayout from '../layouts/SubpageLayout.astro';
 import Lightbox from '../components/Lightbox.astro';
 
-// gallery folder has images: 2-18, 20-27, 29-55 (no 1, 19, 28)
 const nums = [
-  ...Array.from({ length: 17 }, (_, i) => i + 2),     // 2-18
-  ...Array.from({ length: 8 }, (_, i) => i + 20),      // 20-27
-  ...Array.from({ length: 26 }, (_, i) => i + 29),     // 29-54
+  ...Array.from({ length: 17 }, (_, i) => i + 2),
+  ...Array.from({ length: 8 }, (_, i) => i + 20),
+  ...Array.from({ length: 26 }, (_, i) => i + 29),
   55,
 ];
 
@@ -14,21 +13,29 @@ const images = nums.map(n => ({
   src: `/images/gallery/${n}.webp`,
   alt: `Պատկերասրահ — ${n}`,
 }));
+
+const cols: typeof images[] = [[], [], []];
+images.forEach((img, i) => cols[i % 3].push(img));
 ---
-<SubpageLayout title="Պատկերասրահ" backHref="/#gallery">
+<SubpageLayout title="Պատկերասրահ" backHref="/#gallery" bgImage="/images/gallery-bg.webp">
   <h1 class="page-header">Պատկերասրահ</h1>
 
-  <div class="gallery-page-grid">
-    {images.map(img => (
-      <div
-        class="gallery-page-item"
-        data-lightbox-src={img.src}
-        data-lightbox-alt={img.alt}
-        role="button"
-        tabindex="0"
-        aria-label={`Բացել՝ ${img.alt}`}
-      >
-        <img src={img.src} alt={img.alt} loading="lazy">
+  <div class="gallery-masonry">
+    {cols.map((col, ci) => (
+      <div class="gallery-col">
+        {col.map((img, ri) => (
+          <div
+            class="gallery-page-item"
+            data-lightbox-src={img.src}
+            data-lightbox-alt={img.alt}
+            data-lightbox-index={ri * 3 + ci}
+            role="button"
+            tabindex="0"
+            aria-label={`Բացել՝ ${img.alt}`}
+          >
+            <img src={img.src} alt={img.alt} loading="lazy">
+          </div>
+        ))}
       </div>
     ))}
   </div>

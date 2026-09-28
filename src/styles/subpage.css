@@ -132,29 +132,38 @@
 
 .image-grid-item:hover img { transform: scale(1.04); }
 
-/* ===== Full gallery page ===== */
-.gallery-page-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.6rem;
+/* ===== Full gallery page — masonry ===== */
+.gallery-masonry {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.gallery-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .gallery-page-item {
-  aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 3px;
-  background: #f0f0f0;
   cursor: pointer;
+  display: block;
+  background: #111;
 }
 
 .gallery-page-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
+  height: auto;
+  display: block;
+  transition: opacity 0.25s ease, transform 0.35s ease;
 }
 
-.gallery-page-item:hover img { transform: scale(1.06); }
+.gallery-page-item:hover img {
+  opacity: 0.82;
+  transform: scale(1.03);
+}
 
 /* ===== Lightbox ===== */
 .lightbox-dialog {
