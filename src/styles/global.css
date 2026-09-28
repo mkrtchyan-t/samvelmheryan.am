@@ -196,11 +196,27 @@ p { margin-bottom: 1em; }
 }
 
 /* ===== Language Switcher ===== */
+.lang-item {
+  display: flex;
+  align-items: center;
+}
 .lang-switcher {
   display: flex;
   align-items: center;
   gap: 3px;
   margin-left: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .lang-item {
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    width: 100%;
+  }
+  .lang-item .lang-switcher {
+    margin-left: 0;
+  }
 }
 .lang-btn {
   background: none;
