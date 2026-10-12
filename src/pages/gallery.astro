@@ -1,17 +1,11 @@
 ---
 import SubpageLayout from '../layouts/SubpageLayout.astro';
 import Lightbox from '../components/Lightbox.astro';
+import site from '../../content/site.json';
 
-const nums = [
-  ...Array.from({ length: 17 }, (_, i) => i + 2),
-  ...Array.from({ length: 8 }, (_, i) => i + 20),
-  ...Array.from({ length: 26 }, (_, i) => i + 29),
-  55,
-];
-
-const images = nums.map(n => ({
-  src: `/images/gallery/${n}.webp`,
-  alt: `Պատկերասրահ — ${n}`,
+const images = site.gallery.map((g, i) => ({
+  src: g.image,
+  alt: `Պատկերասրահ — ${i + 1}`,
 }));
 
 const cols: typeof images[] = [[], [], []];

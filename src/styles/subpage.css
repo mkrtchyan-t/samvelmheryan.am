@@ -60,6 +60,10 @@
   margin-bottom: 2rem;
 }
 
+.page-header span {
+  text-transform: uppercase;
+}
+
 .page-header small {
   font-size: 0.55em;
   color: rgba(255,255,255,0.6);
