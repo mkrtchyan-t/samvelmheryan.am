@@ -19,6 +19,22 @@ const MAX_UPLOAD_BYTES = 6 * 1024 * 1024;
 const MAX_ITEMS = 300;
 const LANGS = ['hy', 'en', 'ru'];
 
+/**
+ * Fixed shape + size limits per image type. Keep in sync with IMAGE_KINDS in admin.js.
+ * ratios: allowed width/height shapes (null = any shape); max_w / max_h: size limits in px.
+ */
+const IMAGE_KINDS = [
+    'banners' => ['ratios' => [4 / 1], 'max_w' => 1920, 'max_h' => 480],
+    'books' => ['ratios' => [5 / 8], 'max_w' => 800, 'max_h' => 1280],
+    'films' => ['ratios' => [5 / 8], 'max_w' => 800, 'max_h' => 1280],
+    'poster' => ['ratios' => [1.0], 'max_w' => 900, 'max_h' => 900],
+    'author' => ['ratios' => [2 / 3], 'max_w' => 800, 'max_h' => 1200],
+    'excerpt' => ['ratios' => [3 / 4], 'max_w' => 900, 'max_h' => 1200],
+    'gallery' => ['ratios' => [3 / 2, 2 / 3], 'max_w' => 1600, 'max_h' => 1600],
+    'hero' => ['ratios' => null, 'max_w' => 1600, 'max_h' => 4000],
+];
+const RATIO_TOLERANCE = 0.02; // the browser rounds to whole pixels
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
@@ -411,6 +427,33 @@ function list_uploads(): array
     return array_values(array_map(static fn($i) => (string)$i['name'], array_filter($items, static fn($i) => ($i['type'] ?? '') === 'file')));
 }
 
+/** Rejects images whose real pixel shape/size does not fit the declared kind. */
+function check_image_shape(string $bytes, string $kind): void
+{
+    if (!isset(IMAGE_KINDS[$kind])) {
+        fail('Unknown image type.');
+    }
+    $info = @getimagesizefromstring($bytes);
+    if ($info === false || ($info[2] ?? 0) !== IMAGETYPE_WEBP) {
+        fail('The image could not be read.');
+    }
+    [$w, $h] = $info;
+    $rule = IMAGE_KINDS[$kind];
+    if ($w < 50 || $h < 20 || $w > $rule['max_w'] + 2 || $h > $rule['max_h'] + 2) {
+        fail('The image size is not allowed for this place on the site.');
+    }
+    if ($rule['ratios'] !== null) {
+        $ratio = $w / $h;
+        $ok = false;
+        foreach ($rule['ratios'] as $r) {
+            $ok = $ok || abs($ratio / $r - 1) <= RATIO_TOLERANCE;
+        }
+        if (!$ok) {
+            fail('The image has the wrong shape for this place on the site.');
+        }
+    }
+}
+
 function is_real_webp(string $bytes): bool
 {
     return strlen($bytes) > 12 && substr($bytes, 0, 4) === 'RIFF' && substr($bytes, 8, 4) === 'WEBP';
@@ -501,6 +544,7 @@ switch ($action) {
         if (!is_real_webp($bytes)) {
             fail('Only WebP images are accepted (the admin page converts photos automatically).');
         }
+        check_image_shape($bytes, (string)($_POST['kind'] ?? ''));
         $name = date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.webp';
         $path = UPLOAD_DIR . '/' . $name;
         if ($root = dry_root()) {

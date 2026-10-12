@@ -13,8 +13,20 @@
     ['gallery', 'Պատկերասրահ'],
     ['contact', 'Կապ']
   ];
-  // Longest side (px) per kind of image, so uploads stay light.
-  var MAX_SIDE = { banners: 1920, books: 900, films: 1200, gallery: 1600, detail: 1600 };
+  // Every image type has a fixed shape on the site. Uploads are cropped (centered) and resized to it
+  // automatically. Keep in sync with IMAGE_KINDS in api.php, which re-checks every upload.
+  //   ratios: allowed width/height shapes (the closest one to the photo is used); null = keep the photo's shape
+  //   maxW / maxH: size limits in px (photos are only ever shrunk, never enlarged)
+  var IMAGE_KINDS = {
+    banners: { ratios: [4 / 1], maxW: 1920, maxH: 480, label: 'լայն շերտ 4:1' },
+    books: { ratios: [5 / 8], maxW: 800, maxH: 1280, label: 'ուղղահայաց շապիկ 5:8' },
+    films: { ratios: [5 / 8], maxW: 800, maxH: 1280, label: 'ուղղահայաց շապիկ 5:8' },
+    poster: { ratios: [1], maxW: 900, maxH: 900, label: 'քառակուսի 1:1' },
+    author: { ratios: [2 / 3], maxW: 800, maxH: 1200, label: 'ուղղահայաց դիմանկար 2:3' },
+    excerpt: { ratios: [3 / 4], maxW: 900, maxH: 1200, label: 'ուղղահայաց 3:4' },
+    gallery: { ratios: [3 / 2, 2 / 3], maxW: 1600, maxH: 1600, label: 'հորիզոնական 3:2 կամ ուղղահայաց 2:3' },
+    hero: { ratios: null, maxW: 1600, maxH: 4000, label: 'առանց կտրելու, միայն փոքրացվում է' }
+  };
   var SECTION_LABELS = {
     books: { hy: 'Հատված գրքից', en: 'Excerpt from the Book', ru: 'Отрывок из книги' },
     films: { hy: 'Միջոցառումներ', en: 'Events', ru: 'Мероприятия' }
@@ -105,27 +117,56 @@
     render();
   }
 
+  /** Extra sentence for the toast when a chosen photo is much smaller than the space it fills. */
+  function smallNote(urls) {
+    var small = urls.some(function (u) { return uploads[u] && uploads[u].small; });
+    return small ? ' Ուշադրություն՝ նկարը փոքր է և կարող է պղտոր երևալ։ Եթե կարող եք, ընտրեք ավելի մեծ նկար։' : '';
+  }
+
+  function shapeHint(kind) {
+    return 'Նկարը ավտոմատ կտրվում և փոքրացվում է կայքին հարմար ձևի՝ ' + IMAGE_KINDS[kind].label + '։';
+  }
+
   function previewOf(url) {
     return uploads[url] ? uploads[url].preview : url;
   }
 
   // ── image conversion (browser-side → WebP) ───────────────────────────────
 
-  function toWebp(file, maxSide) {
+  /** Picks the allowed shape closest to the photo's own shape. */
+  function pickRatio(ratios, srcRatio) {
+    return ratios.reduce(function (best, r) {
+      return Math.abs(Math.log(r / srcRatio)) < Math.abs(Math.log(best / srcRatio)) ? r : best;
+    });
+  }
+
+  /** Center-crops to the kind's shape, shrinks to its size limit and encodes as WebP. */
+  function toWebp(file, kind) {
+    var cfg = IMAGE_KINDS[kind];
     return new Promise(function (resolve, reject) {
       var img = new Image();
       var src = URL.createObjectURL(file);
       img.onload = function () {
-        var scale = Math.min(1, maxSide / Math.max(img.naturalWidth, img.naturalHeight));
-        var w = Math.max(1, Math.round(img.naturalWidth * scale));
-        var hgt = Math.max(1, Math.round(img.naturalHeight * scale));
+        var iw = img.naturalWidth, ih = img.naturalHeight;
+        // 1. crop rectangle (source pixels): the biggest centered area with the wanted shape
+        var sx = 0, sy = 0, sw = iw, sh = ih;
+        if (cfg.ratios) {
+          var r = pickRatio(cfg.ratios, iw / ih);
+          if (iw / ih > r) { sw = Math.round(ih * r); sx = Math.round((iw - sw) / 2); }
+          else { sh = Math.round(iw / r); sy = Math.round((ih - sh) / 2); }
+        }
+        // 2. output size: shrink only, never enlarge
+        var scale = Math.min(1, cfg.maxW / sw, cfg.maxH / sh);
+        var w = Math.max(1, Math.round(sw * scale));
+        var hgt = Math.max(1, Math.round(sh * scale));
         var canvas = document.createElement('canvas');
         canvas.width = w;
         canvas.height = hgt;
-        canvas.getContext('2d').drawImage(img, 0, 0, w, hgt);
+        canvas.getContext('2d').drawImage(img, sx, sy, sw, sh, 0, 0, w, hgt);
         URL.revokeObjectURL(src);
+        var small = cfg.ratios && sw < cfg.maxW * 0.4 && sh < cfg.maxH * 0.4;
         canvas.toBlob(function (blob) {
-          if (blob && blob.type === 'image/webp') resolve(blob);
+          if (blob && blob.type === 'image/webp') resolve({ blob: blob, small: small });
           else reject(new Error('Այս դիտարկիչը չի կարող նկարը վերածել WebP-ի։ Օգտագործեք Chrome կամ Firefox։'));
         }, 'image/webp', 0.82);
       };
@@ -140,12 +181,13 @@
   /** Converts and uploads one photo. Resolves with the site image URL. */
   function uploadImage(file, kind) {
     state.busy++;
-    return toWebp(file, MAX_SIDE[kind] || 1600).then(function (blob) {
+    return toWebp(file, kind).then(function (res) {
       var fd = new FormData();
-      fd.append('file', blob, 'image.webp');
-      return api('upload', { body: fd }).then(function (res) {
-        uploads[res.image] = { path: res.path, sha: res.sha, preview: URL.createObjectURL(blob) };
-        return res.image;
+      fd.append('file', res.blob, 'image.webp');
+      fd.append('kind', kind);
+      return api('upload', { body: fd }).then(function (up) {
+        uploads[up.image] = { path: up.path, sha: up.sha, preview: URL.createObjectURL(res.blob), small: res.small };
+        return up.image;
       });
     }).then(function (url) {
       state.busy--;
@@ -171,16 +213,18 @@
     pickFiles(true, function (files) {
       toast('Նկարները բեռնվում են… (' + files.length + ')');
       // sequential keeps the server happy and the order predictable
+      var added = [];
       files.reduce(function (p, file) {
         return p.then(function () {
           return uploadImage(file, kind).then(function (url) {
+            added.push(url);
             list.push(makeItem(url));
             markDirty();
             render();
           });
         });
       }, Promise.resolve()).then(function () {
-        toast('Նկարները ավելացվեցին։ Չմոռանաք սեղմել «Պահպանել և հրապարակել»։', 'ok');
+        toast('Նկարները ավելացվեցին։ Չմոռանաք սեղմել «Պահպանել և հրապարակել»։' + smallNote(added));
       }, function (err) { toast(err.message, 'error'); });
     });
   }
@@ -192,6 +236,8 @@
         obj[key] = url;
         markDirty();
         render();
+        var note = smallNote([url]);
+        if (note) toast('Նկարը փոխվեց։' + note);
       }, function (err) {
         thumb.classList.remove('busy');
         toast(err.message, 'error');
@@ -385,7 +431,8 @@
             h('button', { class: 'btn small danger', onclick: function () { remove(d.sections, i, 'այս բաժինը'); } }, 'Ջնջել բաժինը'))),
         h('p', { class: 'hint' }, 'Բաժնի վերնագիր (երևում է նկարների վերևում)՝'),
         langFields(sec.label),
-        tilesEditor(sec.images, 'detail'));
+        h('p', { class: 'hint' }, shapeHint(kind === 'books' ? 'excerpt' : 'gallery')),
+        tilesEditor(sec.images, kind === 'books' ? 'excerpt' : 'gallery'));
       sections.appendChild(box);
     });
     return h('div', { class: 'detail-editor' },
@@ -394,8 +441,8 @@
       h('h4', {}, 'Տեղեկատու տող (օր.՝ հրատարակչություն և տարեթվեր)'), langFields(d.meta, { required: false }),
       h('h4', {}, 'Նկարագրություն'), paragraphsEditor(d.paragraphs),
       isFilm ? youtubeField(d) : null,
-      isFilm ? optionalImage(d, 'poster', 'books', 'Նկար էջի վերևում (օր.՝ DVD-ի շապիկ)') : null,
-      isFilm ? optionalImage(d, 'hero', 'detail', 'Մեծ լայն նկար էջում') : null,
+      isFilm ? optionalImage(d, 'poster', 'poster', 'Նկար էջի վերևում (օր.՝ DVD-ի շապիկ)', shapeHint('poster')) : null,
+      isFilm ? optionalImage(d, 'hero', 'hero', 'Մեծ լայն նկար էջում', shapeHint('hero')) : null,
       h('h4', {}, 'Նկարներ'), sections,
       h('div', { class: 'add-bar' },
         h('button', { class: 'btn', onclick: function () {
@@ -435,7 +482,7 @@
       makeDraggable(el, list, i);
       listEl.appendChild(el);
     });
-    wrap.appendChild(h('p', { class: 'hint' }, 'Քարտերը կարելի է տեղափոխել ▲ ▼ կոճակներով կամ քաշելով։ Նկարը փոխելու համար սեղմեք նրա վրա։'));
+    wrap.appendChild(h('p', { class: 'hint' }, 'Քարտերը կարելի է տեղափոխել ▲ ▼ կոճակներով կամ քաշելով։ Նկարը փոխելու համար սեղմեք նրա վրա։ ' + shapeHint(kind)));
     wrap.appendChild(listEl);
     wrap.appendChild(h('div', { class: 'add-bar' },
       h('button', { class: 'btn primary', onclick: function () {
@@ -461,7 +508,7 @@
       makeDraggable(el, list, i);
       listEl.appendChild(el);
     });
-    wrap.appendChild(h('p', { class: 'hint' }, 'Գլխավոր էջի սլայդերի նկարները։ Լավագույնն է լայն (հորիզոնական) նկար օգտագործել։'));
+    wrap.appendChild(h('p', { class: 'hint' }, 'Գլխավոր էջի սլայդերի նկարները։ ' + shapeHint('banners') + ' Լավագույնն է լայն նկար ընտրել, որ քիչ կտրվի։'));
     wrap.appendChild(listEl);
     wrap.appendChild(h('div', { class: 'add-bar' },
       h('button', { class: 'btn primary', onclick: function () { addPhotos(list, 'banners', function (url) { return { image: url }; }); } }, '+ Ավելացնել բաններ')));
@@ -470,7 +517,7 @@
 
   function renderGallery() {
     return h('div', {},
-      h('p', { class: 'hint' }, 'Առաջին 6 նկարները երևում են գլխավոր էջում («Գլխավոր» նշումով)։ Մնացածը՝ «Տեսնել ավելին» էջում։ Նկարները կարելի է քաշել կամ տեղափոխել կոճակներով (⤒ = դնել սկզբում)։'),
+      h('p', { class: 'hint' }, 'Առաջին 6 նկարները երևում են գլխավոր էջում («Գլխավոր» նշումով)։ Մնացածը՝ «Տեսնել ավելին» էջում։ Նկարները կարելի է քաշել կամ տեղափոխել կոճակներով (⤒ = դնել սկզբում)։ ' + shapeHint('gallery')),
       tilesEditor(state.content.gallery, 'gallery', { homeCount: 6 }));
   }
 
@@ -478,8 +525,8 @@
     var bio = state.content.bio;
     return h('div', {},
       h('h4', {}, 'Հեղինակի նկարը'),
-      h('p', { class: 'hint' }, 'Գլխավոր էջի վերևի նկարը։ Լավագույնն է ուղղահայաց (դիմանկար) նկար օգտագործել։ Նկարը փոխելու համար սեղմեք նրա վրա։'),
-      thumbFor(bio, 'photo', 'books', false),
+      h('p', { class: 'hint' }, 'Գլխավոր էջի վերևի նկարը։ Նկարը փոխելու համար սեղմեք նրա վրա։ ' + shapeHint('author')),
+      thumbFor(bio, 'photo', 'author', false),
       h('h4', {}, 'Տեքստ'),
       h('p', { class: 'hint' }, 'Գլխավոր էջի վերևի տեքստը (հեղինակի մասին)։ Յուրաքանչյուր պարբերություն առանձին է։'),
       paragraphsEditor(bio.paragraphs, { keepOne: true }));
