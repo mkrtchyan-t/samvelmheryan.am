@@ -24,6 +24,25 @@ author/committer `Samvel Admin Panel (automated) <admin-panel@samvelmheryan.am>`
 (e.g. `git log --author="Admin Panel"` or `git log --grep="^\[admin-panel\]"`). Override with `commit_author_name` /
 `commit_author_email` in the config. A save that changes nothing creates no commit.
 
+## Fixed image shapes
+
+Every image spot has a fixed shape. The admin page center-crops each upload to it, shrinks it to a sensible size
+(never enlarges) and converts it to WebP, and `api.php` re-checks the real pixel size/shape of every upload, so a wrong
+file is rejected even if the page is bypassed. The table lives in two places that must stay in sync:
+`IMAGE_KINDS` in `public/admin/admin.js` and in `public/admin/api.php`.
+
+| Where | Shape | Max size (px) |
+|---|---|---|
+| Banners | 4:1 strip | 1920 × 480 |
+| Book / film covers | 5:8 portrait | 800 × 1280 |
+| Film poster (detail page) | 1:1 square | 900 × 900 |
+| Author photo | 2:3 portrait | 800 × 1200 |
+| Book page/excerpt photos | 3:4 portrait | 900 × 1200 |
+| Gallery and film event photos | 3:2 landscape or 2:3 portrait (nearest to the photo) | 1600 long side |
+| Film wide image | any shape, not cropped | 1600 wide |
+
+Photos already on the site are not touched; only new uploads are cropped.
+
 ## One-time server setup
 
 1. **Create a GitHub token** (GitHub → Settings → Developer settings → Fine-grained tokens):
