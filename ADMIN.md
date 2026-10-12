@@ -38,6 +38,15 @@ author/committer `Samvel Admin Panel (automated) <admin-panel@samvelmheryan.am>`
 Staging (`/home/samvelmheryan/staging/`) reads the same config file one level up, so it would also commit to
 that branch. To test against a different branch, set the `SAMVEL_ADMIN_CONFIG` environment variable to another file.
 
+## Changing the password
+
+```bash
+php scripts/set-admin-password.php .admin-secrets/samvel-admin-config.php
+```
+
+Type the new password twice (hidden). Only its hash is written to the file; then upload the file to the server again
+(above `public_html/`). Delete `.admin-secrets/PASSWORD-for-uncle.txt` afterwards, it holds the old password.
+
 ## Rotating the token / password
 
 Edit the config file on the server; nothing in the repo changes. To revoke access instantly, delete the token on GitHub.
