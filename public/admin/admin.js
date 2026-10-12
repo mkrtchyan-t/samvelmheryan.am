@@ -475,9 +475,14 @@
   }
 
   function renderBio() {
+    var bio = state.content.bio;
     return h('div', {},
+      h('h4', {}, 'Հեղինակի նկարը'),
+      h('p', { class: 'hint' }, 'Գլխավոր էջի վերևի նկարը։ Լավագույնն է ուղղահայաց (դիմանկար) նկար օգտագործել։ Նկարը փոխելու համար սեղմեք նրա վրա։'),
+      thumbFor(bio, 'photo', 'books', false),
+      h('h4', {}, 'Տեքստ'),
       h('p', { class: 'hint' }, 'Գլխավոր էջի վերևի տեքստը (հեղինակի մասին)։ Յուրաքանչյուր պարբերություն առանձին է։'),
-      paragraphsEditor(state.content.bio.paragraphs, { keepOne: true }));
+      paragraphsEditor(bio.paragraphs, { keepOne: true }));
   }
 
   function contactGroup(title, obj, withName, urlLabel) {
@@ -573,6 +578,7 @@
   function usedImages(content) {
     var used = {};
     function add(u) { if (u) used[u] = true; }
+    add(content.bio.photo);
     content.banners.concat(content.gallery).forEach(function (it) { add(it.image); });
     content.books.concat(content.films).forEach(function (it) {
       add(it.image); add(it.detail.bg); add(it.detail.poster); add(it.detail.hero);
@@ -613,6 +619,7 @@
   function loadContent() {
     return api('load').then(function (res) {
       state.content = res.content;
+      if (!state.content.bio.photo) state.content.bio.photo = '/images/author-bg.webp';
       state.dirty = false;
       render();
     });

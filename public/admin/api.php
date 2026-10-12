@@ -289,7 +289,10 @@ function clean_content(mixed $in): array
 
     return [
         'banners' => $banners,
-        'bio' => ['paragraphs' => $bio],
+        'bio' => [
+            'photo' => clean_image_optional($in['bio']['photo'] ?? '') ?: '/images/author-bg.webp',
+            'paragraphs' => $bio,
+        ],
         'books' => $cards($in['books'] ?? [], 'Books', true),
         'films' => $cards($in['films'] ?? [], 'Films', false),
         'gallery' => $gallery,
@@ -310,6 +313,7 @@ function clean_content(mixed $in): array
 function referenced_images(array $content): array
 {
     $refs = [];
+    $refs[$content['bio']['photo']] = true;
     foreach (['banners', 'gallery'] as $section) {
         foreach ($content[$section] as $item) {
             $refs[$item['image']] = true;
