@@ -1,0 +1,72 @@
+---
+import SubpageLayout from '../layouts/SubpageLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+import site from '../../content/site.json';
+
+// One detail page per book/film that has "page" switched on in the admin panel.
+export function getStaticPaths() {
+  return [
+    ...site.books.filter(b => b.page).map(item => ({ params: { slug: item.slug }, props: { item, kind: 'books' } })),
+    ...site.films.filter(f => f.page).map(item => ({ params: { slug: item.slug }, props: { item, kind: 'films' } })),
+  ];
+}
+
+const { item, kind } = Astro.props;
+const d = item.detail;
+const isBook = kind === 'books';
+const poster = d.poster || (isBook ? item.image : '');
+const showGrid = Boolean(poster || d.video || d.meta.hy || d.paragraphs.length);
+const gridClass = isBook ? 'image-grid' : 'gallery-page-grid';
+const cellClass = isBook ? 'image-grid-item' : 'gallery-page-item';
+---
+<SubpageLayout title={item.title.hy} backHref={isBook ? '/#books' : '/#film'} bgImage={d.bg}>
+  <h1 class="page-header">
+    <span>{item.title.hy}</span>
+    {d.genre.hy && <small>{d.genre.hy}</small>}
+  </h1>
+
+  {showGrid && (
+    <div class="detail-grid">
+      {poster && <img src={poster} alt={item.title.hy} width="240" height={isBook ? 360 : 300} loading="eager">}
+      <div class="detail-text">
+        {d.meta.hy && <p class="detail-meta">{d.meta.hy}</p>}
+        {d.paragraphs.map(p => <p>{p.hy}</p>)}
+        {d.video && (
+          <div>
+            <iframe
+              src={`https://www.youtube.com/embed/${d.video}`}
+              title={item.title.hy}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              style="width:100%;aspect-ratio:16/9;border-radius:4px;"
+            ></iframe>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  {d.hero && <img src={d.hero} alt={item.title.hy} loading="eager" style="width:100%;border-radius:4px;">}
+
+  {d.sections.filter(s => s.images.length).map(section => (
+    <>
+      <h3 class="section-label">{section.label.hy}</h3>
+      <div class={gridClass}>
+        {section.images.map((img, i) => (
+          <div
+            class={cellClass}
+            data-lightbox-src={img.image}
+            data-lightbox-alt={`${item.title.hy} — ${i + 1}`}
+            role="button" tabindex="0" aria-label={`Բացել՝ ${item.title.hy} — ${i + 1}`}
+          >
+            <img src={img.image} alt={`${item.title.hy} — ${i + 1}`} loading="lazy">
+          </div>
+        ))}
+      </div>
+    </>
+  ))}
+
+  <Lightbox />
+</SubpageLayout>

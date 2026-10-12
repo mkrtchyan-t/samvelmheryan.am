@@ -1,0 +1,4 @@
+Options -Indexes
+Header set X-Robots-Tag "noindex, nofollow"
+Header set X-Frame-Options "DENY"
+Header set Referrer-Policy "same-origin"

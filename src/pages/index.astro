@@ -3,28 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Carousel from '../components/Carousel.astro';
 import Lightbox from '../components/Lightbox.astro';
+import site from '../../content/site.json';
 
-const books = [
-  { href: '/lonely-eagle', src: '/images/lonely-eagle.webp', alt: 'Մենավոր Բազեն' },
-  { href: '/and-there-were-light', src: '/images/and-there-were-light.webp', alt: 'Եւ եղաւ լոյս' },
-  { href: '/before-the-storm', src: '/images/before-the-storm.webp', alt: 'Փոթորկից առաջ' },
-  { href: '/ayb-ke', src: '/images/ajb-ke.webp', alt: 'Այբ Քէ' },
-  { href: null, src: '/images/turkish.webp', alt: 'Yalnız Şahin (թուրքերեն)' },
-];
+const { banners, books, films, gallery, contact, bio } = site;
 
-const films = [
-  { href: '/garden-of-eden', src: '/images/garden-of-eden.webp', alt: 'Եդեմի Պարտեզը' },
-  { href: '/road-back-home', src: '/images/road-back-home-dvd.webp', alt: 'Տունդարձի ճամփան' },
-  { href: '/film-project', src: '/images/film-project.webp', alt: 'Կինոպրոյեկտ' },
-];
-
-const galleryPreview = [19, 29, 21, 28, 22, 27];
-
-const carouselSlides = [
-  { src: '/images/banner1.webp', alt: 'Նկար 1' },
-  { src: '/images/banner2.webp', alt: 'Նկար 2' },
-  { src: '/images/banner3.webp', alt: 'Նկար 3' },
-];
+const carouselSlides = banners.map((b, i) => ({ src: b.image, alt: `Նկար ${i + 1}` }));
+const galleryPreview = gallery.slice(0, 6);
 ---
 
 <Layout title="Սամվել Մհերյան">
@@ -43,27 +27,7 @@ const carouselSlides = [
           fetchpriority="high"
         >
         <div class="autobiography-text">
-          <p>
-            Մհերյանը գրական և մշակութային իր գործունեությամբ հասարակությանը հայտնի է
-            առավելապես իր հեղինակած «Մենավոր բազեն», «Եւ եղաւ լոյս», «Փոթորկից առաջ»
-            պատմավեպերով, ինչպես նաև «Եդեմի պարտեզը» և «Տունդարձի ճամփան»
-            փաստագրական ֆիլմերով: Նրա կատարած աշխատանքներն են «Ճշմարիտ Լույսը»
-            և «Այբ-Քէ» բանաստեղծությունների ժողովածուները, որոնք արտահայտում են
-            քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես
-            ապաշխարության և փառաբանության խոնարհ աղոթականչեր...
-          </p>
-          <p>
-            «Մենավոր Բազեն» պատմավեպը, որը տեխնիկական կրթություն ստացած Մհերյանի
-            առաջին քայլն է գրականության մեջ, լույս ընծայվեց, երբ հեղինակը 28 տարեկան
-            էր: Գրքի 120 կերպարներից մեծ մասը իրական են, որոնցից շատերի ժառանգները
-            համախմբվելով մեկ գաղափարի շուրջ, 2005թ.-ի փետրվարին՝ Զորավար Անդրանիկի
-            ծննդյան 140 ամյակի օրը հիմնադրում են «Խնուս» մշակութային հիմնադրամը:
-          </p>
-          <p>
-            Գրիքը երկու հրատարակությամբ (Samvel Mheryan «Yalniz Sahin», Fam Yayinlari,
-            Istanbul 2018, 2020թթ.), թուրքերեն լեզվով լույս է ընծայուել Թուրքիայում
-            և վաճառվում է Կ. Պոլսի գրախանութներում:
-          </p>
+          {bio.paragraphs.map(p => <p>{p.hy}</p>)}
         </div>
       </div>
 
@@ -79,14 +43,14 @@ const carouselSlides = [
       <div class="books-scroll">
         {books.map(book => (
           <div class="book-card fade-in">
-            {book.href
-              ? <a href={book.href} class="book-card-inner">
-                  <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
-                  <div class="book-card-overlay">{book.alt}</div>
+            {book.page
+              ? <a href={`/${book.slug}`} class="book-card-inner">
+                  <img src={book.image} alt={book.title.hy} width="180" height="240" loading="lazy">
+                  <div class="book-card-overlay">{book.title.hy}</div>
                 </a>
               : <div class="book-card-inner">
-                  <img src={book.src} alt={book.alt} width="180" height="240" loading="lazy">
-                  <div class="book-card-overlay">{book.alt}</div>
+                  <img src={book.image} alt={book.title.hy} width="180" height="240" loading="lazy">
+                  <div class="book-card-overlay">{book.title.hy}</div>
                 </div>
             }
           </div>
@@ -102,9 +66,9 @@ const carouselSlides = [
       <div class="title-line fade-in"></div>
       <div class="films-grid">
         {films.map(film => (
-          <a href={film.href} class="film-card fade-in">
-            <img src={film.src} alt={film.alt} loading="lazy">
-            <div class="film-card-overlay">{film.alt}</div>
+          <a href={film.page ? `/${film.slug}` : undefined} class="film-card fade-in">
+            <img src={film.image} alt={film.title.hy} loading="lazy">
+            <div class="film-card-overlay">{film.title.hy}</div>
           </a>
         ))}
       </div>
@@ -117,18 +81,18 @@ const carouselSlides = [
       <h2 class="section-title fade-in">Պատկերասրահ</h2>
       <div class="title-line fade-in"></div>
       <div class="gallery-grid">
-        {galleryPreview.map((n, i) => (
+        {galleryPreview.map((g, i) => (
           <div
             class="gallery-item fade-in"
-            data-lightbox-src={`/images/gallery/${n}.webp`}
-            data-lightbox-alt={`Նկար ${n}`}
+            data-lightbox-src={g.image}
+            data-lightbox-alt={`Նկար ${i + 1}`}
             role="button"
             tabindex="0"
-            aria-label={`Բացել նկար ${n}`}
+            aria-label={`Բացել նկար ${i + 1}`}
           >
             <img
-              src={`/images/gallery/${n}.webp`}
-              alt={`Պատկերասրահ ${n}`}
+              src={g.image}
+              alt={`Պատկերասրահ ${i + 1}`}
               loading="lazy"
             >
           </div>
@@ -148,32 +112,32 @@ const carouselSlides = [
       <p class="contact-sub">Հարցերի կամ համագործակցության համար՝</p>
 
       <div class="contact-cards">
-        <a href="https://www.facebook.com/samvel.mheryan" class="contact-card contact-card--fb" rel="noopener" target="_blank">
+        <a href={contact.facebook.url} class="contact-card contact-card--fb" rel="noopener" target="_blank">
           <div class="contact-card-icon contact-card-icon--fb">
             <i class="fa-brands fa-facebook-f"></i>
           </div>
           <span class="contact-card-label">Facebook</span>
-          <span class="contact-card-handle">Սամվել Մհերյան</span>
+          <span class="contact-card-handle">{contact.facebook.name.hy}</span>
           <span class="contact-fb-btn">
             <i class="fa-brands fa-facebook-f"></i>
-            Հետևել
+            <span>Հետևել</span>
           </span>
         </a>
 
-        <a href="mailto:contact@samvelmheryan.am" class="contact-card contact-card--email">
+        <a href={`mailto:${contact.email.address}`} class="contact-card contact-card--email">
           <div class="contact-card-icon">
             <i class="fa-regular fa-envelope"></i>
           </div>
           <span class="contact-card-label">Էլ. փոստ</span>
-          <span class="contact-card-handle">contact@samvelmheryan.am</span>
+          <span class="contact-card-handle">{contact.email.address}</span>
         </a>
 
-        <a href="https://www.linkedin.com/in/samvel-mheryan-5953b4178/" class="contact-card contact-card--linkedin" rel="noopener" target="_blank">
+        <a href={contact.linkedin.url} class="contact-card contact-card--linkedin" rel="noopener" target="_blank">
           <div class="contact-card-icon contact-card-icon--li">
             <i class="fa-brands fa-linkedin-in"></i>
           </div>
           <span class="contact-card-label">LinkedIn</span>
-          <span class="contact-card-handle">Սամվել Մհերյան</span>
+          <span class="contact-card-handle">{contact.linkedin.name.hy}</span>
         </a>
       </div>
 
