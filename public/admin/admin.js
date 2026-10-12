@@ -591,9 +591,9 @@
       return { path: uploads[u].path, sha: uploads[u].sha };
     });
 
-    api('save', { body: { content: state.content, uploads: ups } }).then(function () {
+    api('save', { body: { content: state.content, uploads: ups } }).then(function (res) {
       state.dirty = false;
-      toast('Պահպանվեց։ Կայքը կթարմացվի մոտ 2–3 րոպեից։', 'ok');
+      toast(res.unchanged ? 'Փոփոխություններ չկան. ամեն ինչ արդեն պահպանված է։' : 'Պահպանվեց։ Կայքը կթարմացվի մոտ 2–3 րոպեից։', 'ok');
       render();
     }, function (err) {
       toast(err.message, 'error');

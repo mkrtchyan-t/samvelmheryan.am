@@ -17,6 +17,12 @@ Never rename or hand-edit slugs in `content/site.json` without updating links th
 **Languages:** every text has Armenian (required), English and Russian (optional) boxes; the public site shows
 them through the EN/RU switcher, falling back to Armenian when a translation is empty.
 
+**Commit identity:** admin saves are committed to the branch named in the config (`master` = production) with the
+author/committer `Samvel Admin Panel (automated) <admin-panel@samvelmheryan.am>` and a message starting with
+`[admin-panel] Update <sections>`, so they are easy to tell apart from developer commits
+(e.g. `git log --author="Admin Panel"` or `git log --grep="^\[admin-panel\]"`). Override with `commit_author_name` /
+`commit_author_email` in the config. A save that changes nothing creates no commit.
+
 ## One-time server setup
 
 1. **Create a GitHub token** (GitHub → Settings → Developer settings → Fine-grained tokens):
