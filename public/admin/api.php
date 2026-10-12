@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
 
+// Never print PHP notices/warnings into API responses (they would corrupt the JSON); log them instead.
+ini_set('display_errors', '0');
+
 /**
  * Admin API for samvelmheryan.am.
  *
@@ -335,7 +338,7 @@ function referenced_images(array $content): array
 function github(string $method, string $path, ?array $body = null): array
 {
     global $config;
-    $ch = curl_init('https://api.github.com/repos/' . $config['github_repo'] . $path);
+    $ch = curl_init(rtrim($config['github_api'] ?? 'https://api.github.com', '/') . '/repos/' . $config['github_repo'] . $path);
     curl_setopt_array($ch, [
         CURLOPT_CUSTOMREQUEST => $method,
         CURLOPT_RETURNTRANSFER => true,
@@ -354,7 +357,6 @@ function github(string $method, string $path, ?array $body = null): array
     $raw = curl_exec($ch);
     $status = (int)curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
     $err = curl_error($ch);
-    curl_close($ch);
     if ($raw === false) {
         error_log("samvel-admin: GitHub request failed: $err");
         fail('Could not reach GitHub. Please try again in a minute.', 502);
@@ -408,6 +410,32 @@ function list_uploads(): array
 function is_real_webp(string $bytes): bool
 {
     return strlen($bytes) > 12 && substr($bytes, 0, 4) === 'RIFF' && substr($bytes, 8, 4) === 'WEBP';
+}
+
+/** Recursively sort keys so two equal documents compare equal regardless of key order. */
+function normalize(mixed $v): mixed
+{
+    if (!is_array($v)) {
+        return $v;
+    }
+    $v = array_map('normalize', $v);
+    if (!array_is_list($v)) {
+        ksort($v);
+    }
+    return $v;
+}
+
+/** Which top-level sections differ between two content documents. */
+function changed_sections(array $before, array $after): array
+{
+    $names = ['bio' => 'biography', 'banners' => 'banners', 'books' => 'books', 'films' => 'films', 'gallery' => 'gallery', 'contact' => 'contact info'];
+    $out = [];
+    foreach ($names as $key => $label) {
+        if (json_encode(normalize($before[$key] ?? null)) !== json_encode(normalize($after[$key] ?? null))) {
+            $out[] = $label;
+        }
+    }
+    return $out;
 }
 
 // ── Routes ──────────────────────────────────────────────────────────────────
@@ -526,6 +554,22 @@ switch ($action) {
             respond(['ok' => true, 'dryRun' => true]);
         }
 
+        $changed = changed_sections(read_content(), $content);
+        if (!$changed && !$uploads && !$stale) {
+            respond(['ok' => true, 'unchanged' => true]);
+        }
+
+        // Flagged identity so admin-panel commits are easy to tell apart from human ones in `git log`.
+        $who = [
+            'name' => $config['commit_author_name'] ?? 'Samvel Admin Panel (automated)',
+            'email' => $config['commit_author_email'] ?? 'admin-panel@samvelmheryan.am',
+        ];
+        $summary = $changed ? implode(', ', $changed) : 'photos';
+        $message = "[admin-panel] Update $summary\n\n"
+            . "Automated commit made through the /admin editor, not by a developer.\n"
+            . ($uploads ? 'Photos added: ' . count($uploads) . "\n" : '')
+            . ($stale ? 'Unused photos removed: ' . count($stale) . "\n" : '');
+
         $branch = $config['github_branch'];
         for ($attempt = 0; $attempt < 2; $attempt++) {
             $ref = github_ok(github('GET', '/git/ref/heads/' . rawurlencode($branch)), 'read branch');
@@ -540,10 +584,13 @@ switch ($action) {
                 $entries[] = ['path' => $p, 'mode' => '100644', 'type' => 'blob', 'sha' => null];
             }
             $tree = github_ok(github('POST', '/git/trees', ['base_tree' => $commit['tree']['sha'], 'tree' => $entries]), 'write tree');
+            $when = gmdate('Y-m-d\TH:i:s\Z');
             $new = github_ok(github('POST', '/git/commits', [
-                'message' => 'Content update via admin panel',
+                'message' => $message,
                 'tree' => $tree['sha'],
                 'parents' => [$headSha],
+                'author' => $who + ['date' => $when],
+                'committer' => $who + ['date' => $when],
             ]), 'write commit');
             $res = github('PATCH', '/git/refs/heads/' . rawurlencode($branch), ['sha' => $new['sha']]);
             if ($res['status'] === 422 && $attempt === 0) {

@@ -18,6 +18,12 @@ Never rename or hand-edit slugs in `content/site.json` without updating links th
 every Armenian string and the admin preserves it on save, so enabling the language switcher later only needs the
 `admin-panel-i18n` branch (switcher + EN/RU boxes in the admin).
 
+**Commit identity:** admin saves are committed to the branch named in the config (`master` = production) with the
+author/committer `Samvel Admin Panel (automated) <admin-panel@samvelmheryan.am>` and a message starting with
+`[admin-panel] Update <sections>`, so they are easy to tell apart from developer commits
+(e.g. `git log --author="Admin Panel"` or `git log --grep="^\[admin-panel\]"`). Override with `commit_author_name` /
+`commit_author_email` in the config. A save that changes nothing creates no commit.
+
 ## One-time server setup
 
 1. **Create a GitHub token** (GitHub → Settings → Developer settings → Fine-grained tokens):
