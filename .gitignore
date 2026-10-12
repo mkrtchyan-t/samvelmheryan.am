@@ -3,3 +3,4 @@ dist/
 .astro/
 admin-config.php
 samvel-admin-config.php
+.admin-secrets/
