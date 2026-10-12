@@ -2,9 +2,7 @@
   'use strict';
 
   var API = 'api.php';
-  // Armenian only for now. English/Russian text is still stored in content/site.json and is
-  // preserved on save; the EN/RU boxes live on the admin-panel-i18n branch.
-  var LANGS = [['hy', 'Հայերեն (պարտադիր)']];
+  var LANGS = [['hy', 'Հայերեն (պարտադիր)'], ['en', 'English'], ['ru', 'Русский']];
   var TABS = [
     ['bio', 'Կենսագրություն'],
     ['banners', 'Բաններ'],

@@ -2,6 +2,7 @@
 import SubpageLayout from '../layouts/SubpageLayout.astro';
 import Lightbox from '../components/Lightbox.astro';
 import site from '../../content/site.json';
+import { tr } from '../lib/i18n';
 
 // One detail page per book/film that has "page" switched on in the admin panel.
 export function getStaticPaths() {
@@ -21,16 +22,16 @@ const cellClass = isBook ? 'image-grid-item' : 'gallery-page-item';
 ---
 <SubpageLayout title={item.title.hy} backHref={isBook ? '/#books' : '/#film'} bgImage={d.bg}>
   <h1 class="page-header">
-    <span>{item.title.hy}</span>
-    {d.genre.hy && <small>{d.genre.hy}</small>}
+    <span {...tr(item.title)}>{item.title.hy}</span>
+    {d.genre.hy && <small {...tr(d.genre)}>{d.genre.hy}</small>}
   </h1>
 
   {showGrid && (
     <div class="detail-grid">
       {poster && <img src={poster} alt={item.title.hy} width="240" height={isBook ? 360 : 300} loading="eager">}
       <div class="detail-text">
-        {d.meta.hy && <p class="detail-meta">{d.meta.hy}</p>}
-        {d.paragraphs.map(p => <p>{p.hy}</p>)}
+        {d.meta.hy && <p class="detail-meta" {...tr(d.meta)}>{d.meta.hy}</p>}
+        {d.paragraphs.map(p => <p {...tr(p)}>{p.hy}</p>)}
         {d.video && (
           <div>
             <iframe
@@ -52,7 +53,7 @@ const cellClass = isBook ? 'image-grid-item' : 'gallery-page-item';
 
   {d.sections.filter(s => s.images.length).map(section => (
     <>
-      <h3 class="section-label">{section.label.hy}</h3>
+      <h3 class="section-label" {...tr(section.label)}>{section.label.hy}</h3>
       <div class={gridClass}>
         {section.images.map((img, i) => (
           <div

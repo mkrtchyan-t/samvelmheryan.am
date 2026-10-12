@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Carousel from '../components/Carousel.astro';
 import Lightbox from '../components/Lightbox.astro';
 import site from '../../content/site.json';
+import { tr } from '../lib/i18n';
 
 const { banners, books, films, gallery, contact, bio } = site;
 
@@ -27,7 +28,7 @@ const galleryPreview = gallery.slice(0, 6);
           fetchpriority="high"
         >
         <div class="autobiography-text">
-          {bio.paragraphs.map(p => <p>{p.hy}</p>)}
+          {bio.paragraphs.map(p => <p {...tr(p)}>{p.hy}</p>)}
         </div>
       </div>
 
@@ -38,7 +39,7 @@ const galleryPreview = gallery.slice(0, 6);
   <!-- ===== Books ===== -->
   <section id="books" class="hero-section" style="background-image:url('/images/books-bg.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Գրքեր</h2>
+      <h2 class="section-title fade-in" data-i18n="section.books">Գրքեր</h2>
       <div class="title-line fade-in"></div>
       <div class="books-scroll">
         {books.map(book => (
@@ -46,11 +47,11 @@ const galleryPreview = gallery.slice(0, 6);
             {book.page
               ? <a href={`/${book.slug}`} class="book-card-inner">
                   <img src={book.image} alt={book.title.hy} width="180" height="240" loading="lazy">
-                  <div class="book-card-overlay">{book.title.hy}</div>
+                  <div class="book-card-overlay" {...tr(book.title)}>{book.title.hy}</div>
                 </a>
               : <div class="book-card-inner">
                   <img src={book.image} alt={book.title.hy} width="180" height="240" loading="lazy">
-                  <div class="book-card-overlay">{book.title.hy}</div>
+                  <div class="book-card-overlay" {...tr(book.title)}>{book.title.hy}</div>
                 </div>
             }
           </div>
@@ -62,13 +63,13 @@ const galleryPreview = gallery.slice(0, 6);
   <!-- ===== Films ===== -->
   <section id="film" class="hero-section" style="background-image:url('/images/khnous2.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Ֆիլմագրություն</h2>
+      <h2 class="section-title fade-in" data-i18n="section.films">Ֆիլմագրություն</h2>
       <div class="title-line fade-in"></div>
       <div class="films-grid">
         {films.map(film => (
           <a href={film.page ? `/${film.slug}` : undefined} class="film-card fade-in">
             <img src={film.image} alt={film.title.hy} loading="lazy">
-            <div class="film-card-overlay">{film.title.hy}</div>
+            <div class="film-card-overlay" {...tr(film.title)}>{film.title.hy}</div>
           </a>
         ))}
       </div>
@@ -78,7 +79,7 @@ const galleryPreview = gallery.slice(0, 6);
   <!-- ===== Gallery ===== -->
   <section id="gallery" class="hero-section" style="background-image:url('/images/gallery-bg.webp')">
     <div class="container">
-      <h2 class="section-title fade-in">Պատկերասրահ</h2>
+      <h2 class="section-title fade-in" data-i18n="section.gallery">Պատկերասրահ</h2>
       <div class="title-line fade-in"></div>
       <div class="gallery-grid">
         {galleryPreview.map((g, i) => (
@@ -99,7 +100,7 @@ const galleryPreview = gallery.slice(0, 6);
         ))}
       </div>
       <div style="text-align:center">
-        <a href="/gallery" class="see-more-btn">Տեսնել ավելին</a>
+        <a href="/gallery" class="see-more-btn" data-i18n="ui.seeMore">Տեսնել ավելին</a>
       </div>
     </div>
   </section>
@@ -107,9 +108,9 @@ const galleryPreview = gallery.slice(0, 6);
   <!-- ===== Contact ===== -->
   <footer id="contact">
     <div class="contact-inner">
-      <h2 class="section-title">ԿԱՊ</h2>
+      <h2 class="section-title" data-i18n="section.contact">ԿԱՊ</h2>
       <div class="title-line"></div>
-      <p class="contact-sub">Հարցերի կամ համագործակցության համար՝</p>
+      <p class="contact-sub" data-i18n="contact.sub">Հարցերի կամ համագործակցության համար՝</p>
 
       <div class="contact-cards">
         <a href={contact.facebook.url} class="contact-card contact-card--fb" rel="noopener" target="_blank">
@@ -117,10 +118,10 @@ const galleryPreview = gallery.slice(0, 6);
             <i class="fa-brands fa-facebook-f"></i>
           </div>
           <span class="contact-card-label">Facebook</span>
-          <span class="contact-card-handle">{contact.facebook.name.hy}</span>
+          <span class="contact-card-handle" {...tr(contact.facebook.name)}>{contact.facebook.name.hy}</span>
           <span class="contact-fb-btn">
             <i class="fa-brands fa-facebook-f"></i>
-            <span>Հետևել</span>
+            <span data-i18n="contact.follow">Հետևել</span>
           </span>
         </a>
 
@@ -128,7 +129,7 @@ const galleryPreview = gallery.slice(0, 6);
           <div class="contact-card-icon">
             <i class="fa-regular fa-envelope"></i>
           </div>
-          <span class="contact-card-label">Էլ. փոստ</span>
+          <span class="contact-card-label" data-i18n="contact.emailLabel">Էլ. փոստ</span>
           <span class="contact-card-handle">{contact.email.address}</span>
         </a>
 
@@ -137,11 +138,11 @@ const galleryPreview = gallery.slice(0, 6);
             <i class="fa-brands fa-linkedin-in"></i>
           </div>
           <span class="contact-card-label">LinkedIn</span>
-          <span class="contact-card-handle">{contact.linkedin.name.hy}</span>
+          <span class="contact-card-handle" {...tr(contact.linkedin.name)}>{contact.linkedin.name.hy}</span>
         </a>
       </div>
 
-      <p class="contact-copy">© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
+      <p class="contact-copy" data-i18n="contact.copy">© Սամվել Մհերյան. Բոլոր իրավունքները պաշտպանված են.</p>
     </div>
     <a href="#" class="back-to-top" aria-label="Вeреv"><i class="fa-solid fa-circle-chevron-up"></i></a>
   </footer>

@@ -14,9 +14,8 @@ generates `/<slug>` from the card's `detail` block (subtitle, details line, para
 sections). Page addresses of existing items are kept; new items get a generated address (`book-…` / `film-…`).
 Never rename or hand-edit slugs in `content/site.json` without updating links that point to them.
 
-**Languages:** the site and admin are Armenian-only for now. `content/site.json` still stores `en`/`ru` text next to
-every Armenian string and the admin preserves it on save, so enabling the language switcher later only needs the
-`admin-panel-i18n` branch (switcher + EN/RU boxes in the admin).
+**Languages:** every text has Armenian (required), English and Russian (optional) boxes; the public site shows
+them through the EN/RU switcher, falling back to Armenian when a translation is empty.
 
 ## One-time server setup
 
