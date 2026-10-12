@@ -1,743 +1,743 @@
 {
-  "banners": [
-    {
-      "image": "/images/banner1.webp"
-    },
-    {
-      "image": "/images/banner2.webp"
-    },
-    {
-      "image": "/images/banner3.webp"
-    }
-  ],
-  "books": [
-    {
-      "image": "/images/lonely-eagle.webp",
-      "title": {
-        "hy": "Մենավոր Բազեն",
-        "en": "The Lonely Eagle",
-        "ru": "Одинокий орёл"
-      },
-      "slug": "lonely-eagle",
-      "page": true,
-      "detail": {
-        "bg": "/images/lonely-eagle-bg.webp",
-        "genre": {
-          "hy": "պատմավեպ",
-          "en": "historical novel",
-          "ru": "исторический роман"
+    "banners": [
+        {
+            "image": "/images/banner1.webp"
         },
-        "meta": {
-          "hy": "«Ասողիկ» հրատարակչություն, 2007թ. · 2010թ. · 2014թ.",
-          "en": "«Asoghik» Publishing, 2007 · 2010 · 2014",
-          "ru": "Издательство «Асогик», 2007 · 2010 · 2014"
+        {
+            "image": "/images/banner2.webp"
         },
+        {
+            "image": "/images/banner3.webp"
+        }
+    ],
+    "bio": {
         "paragraphs": [
-          {
-            "hy": "«Մենավոր բազեն» վեպում նկարագրվում է Օսմանյան Կայսրության հայահալած քաղաքականության ամենաարյունալի ժամանակաշրջանը՝ XIX դարի կեսերից մինչև Առաջին համաշխարհային պատերազմի տարիները։",
-            "en": "The Lonely Eagle depicts the bloodiest period of the Ottoman Empire's anti-Armenian policies — from the mid-19th century through the years of the First World War.",
-            "ru": "Роман «Одинокий орёл» описывает самый кровопролитный период антиармянской политики Османской империи — с середины XIX века до лет Первой мировой войны."
-          },
-          {
-            "hy": "Վեպում նկարագրվում է, թե ինչ անդրադարձ են ունեցել Խնուս (Հարք) գավառի վրա սուլթան Աբդուլ Համիդի օրոք՝ 1893–95 թ., Արևմտյան Հայաստանում և Կիլիկիայում հայերի հանդեպ իրականացված կոտորածները, և ինչ նշանակություն է ունեցել բարեփոխումների մասին սուլթանի հրամանագիրը (1908թ.)։ Գիրքն ավարտվում է 1915 թ. Հայոց Մեծ եղեռնով։",
-            "en": "The novel describes the impact on the province of Khnus (Hark) of the massacres of Armenians in Western Armenia and Cilicia during the reign of Sultan Abdul Hamid II (1893–1895), and the significance of the Sultan's decree on reforms (1908). The book concludes with the Armenian Genocide of 1915.",
-            "ru": "В романе описывается, какое воздействие оказали на провинцию Хнус (Харк) погромы армян в Западной Армении и Киликии в годы правления султана Абдул-Гамида II (1893–1895), а также какое значение имел султанский указ о реформах (1908 г.). Книга завершается Геноцидом армян 1915 года."
-          },
-          {
-            "hy": "Վեպը թուրքերեն լեզվով երկու հրատարակությամբ (Fam Yayinlari, Istanbul 2018, 2020թթ.) լույս է ընծայուել Թուրքիայում։",
-            "en": "The novel has been published in Turkish in two editions (Fam Yayınları, Istanbul 2018 and 2020) and is available in bookstores in Istanbul.",
-            "ru": "Роман вышел на турецком языке в двух изданиях (Fam Yayınları, Стамбул, 2018 и 2020) и продаётся в книжных магазинах Стамбула."
-          }
-        ],
-        "video": "",
-        "poster": "",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Հատված գրքից",
-              "en": "Excerpt from the Book",
-              "ru": "Отрывок из книги"
+            {
+                "hy": "Մհերյանը գրական և մշակութային իր գործունեությամբ հասարակությանը հայտնի է առավելապես իր հեղինակած «Մենավոր բազեն», «Եւ եղաւ լոյս», «Փոթորկից առաջ» պատմավեպերով, ինչպես նաև «Եդեմի պարտեզը» և «Տունդարձի ճամփան» փաստագրական ֆիլմերով: Նրա կատարած աշխատանքներն են «Ճշմարիտ Լույսը» և «Այբ-Քէ» բանաստեղծությունների ժողովածուները, որոնք արտահայտում են քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես ապաշխարության և փառաբանության խոնարհ աղոթականչեր...",
+                "en": "Mheryan is known to the public primarily through his historical novels The Lonely Eagle, And There Was Light, and Before the Storm, as well as the documentary films Garden of Eden and Road Back Home. His other works include the poetry collections The True Light and Ayb-Ke, which express a Christian's emotions and reflections addressed to the Creator God as humble prayers of repentance and praise…",
+                "ru": "Мгерян известен широкой общественности прежде всего своими историческими романами «Одинокий орёл», «И был свет» и «Перед грозой», а также документальными фильмами «Сад Эдема» и «Дорога домой». В числе его произведений — сборники стихотворений «Истинный свет» и «Айб-Ке», выражающие чувства и размышления христианина, обращённые к Богу-Творцу как смиренные молитвы покаяния и хвалы…"
             },
-            "images": [
-              {
-                "image": "/images/Menavor-Bazen_page-0001.webp"
-              },
-              {
-                "image": "/images/Menavor-Bazen_page-0002.webp"
-              },
-              {
-                "image": "/images/Menavor-Bazen_page-0003.webp"
-              },
-              {
-                "image": "/images/Menavor-Bazen_page-0004.webp"
-              }
-            ]
-          },
-          {
-            "label": {
-              "hy": "Շնորհանդեսներ",
-              "en": "Book Launch Events",
-              "ru": "Презентации книги"
+            {
+                "hy": "«Մենավոր Բազեն» պատմավեպը, որը տեխնիկական կրթություն ստացած Մհերյանի առաջին քայլն է գրականության մեջ, լույս ընծայվեց, երբ հեղինակը 28 տարեկան էր: Գրքի 120 կերպարներից մեծ մասը իրական են, որոնցից շատերի ժառանգները համախմբվելով մեկ գաղափարի շուրջ, 2005թ.-ի փետրվարին՝ Զորավար Անդրանիկի ծննդյան 140 ամյակի օրը հիմնադրում են «Խնուս» մշակութային հիմնադրամը:",
+                "en": "The Lonely Eagle, the literary debut of the technically educated Mheryan, was published when the author was 28 years old. The majority of the novel's 120 characters are real people, and many of their descendants, united around a common idea, founded the «Khnus» Cultural Foundation in February 2005 on the 140th anniversary of the birth of General Andranik.",
+                "ru": "«Одинокий орёл» — литературный дебют Мгеряна, получившего техническое образование, — был опубликован, когда автору исполнилось 28 лет. Большинство из 120 персонажей романа являются реальными людьми, и многие из их потомков, объединившись вокруг общей идеи, в феврале 2005 года, в день 140-летия со дня рождения полководца Андраника, основали Культурный фонд «Хнус»."
             },
-            "images": [
-              {
-                "image": "/images/meta-lonely-eagle-1.webp"
-              },
-              {
-                "image": "/images/meta-lonely-eagle-2.webp"
-              },
-              {
-                "image": "/images/meta-lonely-eagle-3.webp"
-              }
-            ]
-          }
+            {
+                "hy": "Գրիքը երկու հրատարակությամբ (Samvel Mheryan «Yalniz Sahin», Fam Yayinlari, Istanbul 2018, 2020թթ.), թուրքերեն լեզվով լույս է ընծայուել Թուրքիայում և վաճառվում է Կ. Պոլսի գրախանութներում:",
+                "en": "The novel has been published in Turkish in two editions (Samvel Mheryan, Yalnız Şahin, Fam Yayınları, Istanbul 2018 and 2020) and is sold in bookstores in Istanbul.",
+                "ru": "Роман вышел на турецком языке в двух изданиях (Самвел Мгерян, Yalnız Şahin, Fam Yayınları, Стамбул, 2018 и 2020) и продаётся в книжных магазинах Стамбула."
+            }
         ]
-      }
     },
-    {
-      "image": "/images/and-there-were-light.webp",
-      "title": {
-        "hy": "Եւ եղաւ լոյս",
-        "en": "And There Was Light",
-        "ru": "И был свет"
-      },
-      "slug": "and-there-were-light",
-      "page": true,
-      "detail": {
-        "bg": "/images/and-there-were-light-bg.webp",
-        "genre": {
-          "hy": "պատմավէպ",
-          "en": "historical novel",
-          "ru": "исторический роман"
-        },
-        "meta": {
-          "hy": "«Ասողիկ» հրատարակչություն, 2019թ.",
-          "en": "«Asoghik» Publishing, 2019",
-          "ru": "Издательство «Асогик», 2019"
-        },
-        "paragraphs": [
-          {
-            "hy": "Այս վեպը առաջին դարի սկզբի Հայաստանում տեղի ունեցած պատմական անցուդարձի համառօտ անդրադարձն է՝ քրիստոնեական մտածողութեան դիրքերից։ Այստեղ պատմական փաստերը քաղուած են առաւելապէս Մովսէս Խորենացու «Հայոց Պատմութիւն»֊ից։",
-            "en": "This novel is a brief reflection on the historical events that unfolded in Armenia at the beginning of the first century, viewed from a Christian perspective. The historical facts are drawn primarily from Moses of Khoren's History of the Armenians.",
-            "ru": "Этот роман — краткое осмысление исторических событий, происходивших в Армении в начале I века, с позиций христианского мировоззрения. Исторические факты почерпнуты преимущественно из «Истории Армении» Мовсеса Хоренаци."
-          },
-          {
-            "hy": "Գրքում նկարագրւում է, թէ ինչպիսի ծանր յետեւանք ունեցաւ Հռովմի կայսերական վերելքը հայկական տիրապետութեան վրայ, եւ թէ ինչպիսի իրավիճակում էր Եդեսիոյ Հայոց պետականութիւնը՝ Աբգար V թագաւորի օրօք։ Պալատական խարդաւանքներ, ազնուական վսեմապատումներ, քանարական֊սիրային պոռթկումներ՝ դիտարկած ազգային եւ կրօնական բուռն վայրիվերոյքի համայնապատկերում։",
-            "en": "The novel portrays the grave consequences of Rome's imperial rise for Armenian sovereignty, and the situation of the Armenian Kingdom of Edessa under King Abgar V — palace intrigues, aristocratic chronicles, lyrical passions — all set against a backdrop of fierce national and religious upheaval.",
-            "ru": "Роман повествует о тяжёлых последствиях имперского возвышения Рима для армянской государственности и о положении Эдесского армянского царства при царе Абгаре V — дворцовые интриги, аристократические хроники, лирические страсти — на фоне бурных национальных и религиозных потрясений."
-          }
-        ],
-        "video": "",
-        "poster": "",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Հատված գրքից",
-              "en": "Excerpt from the Book",
-              "ru": "Отрывок из книги"
+    "books": [
+        {
+            "image": "/images/lonely-eagle.webp",
+            "title": {
+                "hy": "Մենավոր Բազեն",
+                "en": "The Lonely Eagle",
+                "ru": "Одинокий орёл"
             },
-            "images": [
-              {
-                "image": "/images/yev-yeghav-loys-page-0001.webp"
-              },
-              {
-                "image": "/images/yev-yeghav-loys-page-0002.webp"
-              },
-              {
-                "image": "/images/yev-yeghav-loys-page-0003.webp"
-              },
-              {
-                "image": "/images/yev-yeghav-loys-page-0004.webp"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "image": "/images/before-the-storm.webp",
-      "title": {
-        "hy": "Փոթորկից առաջ",
-        "en": "Before the Storm",
-        "ru": "Перед грозой"
-      },
-      "slug": "before-the-storm",
-      "page": true,
-      "detail": {
-        "bg": "/images/before-the-storm-bg.webp",
-        "genre": {
-          "hy": "պատմավեպ",
-          "en": "historical novel",
-          "ru": "исторический роман"
+            "slug": "lonely-eagle",
+            "page": true,
+            "detail": {
+                "bg": "/images/lonely-eagle-bg.webp",
+                "genre": {
+                    "hy": "պատմավեպ",
+                    "en": "historical novel",
+                    "ru": "исторический роман"
+                },
+                "meta": {
+                    "hy": "«Ասողիկ» հրատարակչություն, 2007թ. · 2010թ. · 2014թ.",
+                    "en": "«Asoghik» Publishing, 2007 · 2010 · 2014",
+                    "ru": "Издательство «Асогик», 2007 · 2010 · 2014"
+                },
+                "paragraphs": [
+                    {
+                        "hy": "«Մենավոր բազեն» վեպում նկարագրվում է Օսմանյան Կայսրության հայահալած քաղաքականության ամենաարյունալի ժամանակաշրջանը՝ XIX դարի կեսերից մինչև Առաջին համաշխարհային պատերազմի տարիները։",
+                        "en": "The Lonely Eagle depicts the bloodiest period of the Ottoman Empire's anti-Armenian policies — from the mid-19th century through the years of the First World War.",
+                        "ru": "Роман «Одинокий орёл» описывает самый кровопролитный период антиармянской политики Османской империи — с середины XIX века до лет Первой мировой войны."
+                    },
+                    {
+                        "hy": "Վեպում նկարագրվում է, թե ինչ անդրադարձ են ունեցել Խնուս (Հարք) գավառի վրա սուլթան Աբդուլ Համիդի օրոք՝ 1893–95 թ., Արևմտյան Հայաստանում և Կիլիկիայում հայերի հանդեպ իրականացված կոտորածները, և ինչ նշանակություն է ունեցել բարեփոխումների մասին սուլթանի հրամանագիրը (1908թ.)։ Գիրքն ավարտվում է 1915 թ. Հայոց Մեծ եղեռնով։",
+                        "en": "The novel describes the impact on the province of Khnus (Hark) of the massacres of Armenians in Western Armenia and Cilicia during the reign of Sultan Abdul Hamid II (1893–1895), and the significance of the Sultan's decree on reforms (1908). The book concludes with the Armenian Genocide of 1915.",
+                        "ru": "В романе описывается, какое воздействие оказали на провинцию Хнус (Харк) погромы армян в Западной Армении и Киликии в годы правления султана Абдул-Гамида II (1893–1895), а также какое значение имел султанский указ о реформах (1908 г.). Книга завершается Геноцидом армян 1915 года."
+                    },
+                    {
+                        "hy": "Վեպը թուրքերեն լեզվով երկու հրատարակությամբ (Fam Yayinlari, Istanbul 2018, 2020թթ.) լույս է ընծայուել Թուրքիայում։",
+                        "en": "The novel has been published in Turkish in two editions (Fam Yayınları, Istanbul 2018 and 2020) and is available in bookstores in Istanbul.",
+                        "ru": "Роман вышел на турецком языке в двух изданиях (Fam Yayınları, Стамбул, 2018 и 2020) и продаётся в книжных магазинах Стамбула."
+                    }
+                ],
+                "video": "",
+                "poster": "",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Հատված գրքից",
+                            "en": "Excerpt from the Book",
+                            "ru": "Отрывок из книги"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/Menavor-Bazen_page-0001.webp"
+                            },
+                            {
+                                "image": "/images/Menavor-Bazen_page-0002.webp"
+                            },
+                            {
+                                "image": "/images/Menavor-Bazen_page-0003.webp"
+                            },
+                            {
+                                "image": "/images/Menavor-Bazen_page-0004.webp"
+                            }
+                        ]
+                    },
+                    {
+                        "label": {
+                            "hy": "Շնորհանդեսներ",
+                            "en": "Book Launch Events",
+                            "ru": "Презентации книги"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/meta-lonely-eagle-1.webp"
+                            },
+                            {
+                                "image": "/images/meta-lonely-eagle-2.webp"
+                            },
+                            {
+                                "image": "/images/meta-lonely-eagle-3.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
         },
-        "meta": {
-          "hy": "«Ասողիկ» հրատարակչություն, 2023թ.",
-          "en": "«Asoghik» Publishing, 2023",
-          "ru": "Издательство «Асогик», 2023"
-        },
-        "paragraphs": [
-          {
-            "hy": "Վեպը նկարագրում է 3-րդ դարի վերջին Մեծ Հայքի 29-ամյա անիշխանության շրջանը, երբ Անակ Պարթևի ձեռքով դավադրաբար սպանվում է Խոսրով արքան, իսկ Սասանորդի Արտաշիրը, Պարսկաստանում նվաճելով Արշակունիների հարստությունը դիմում է Հայաստան։",
-            "en": "The novel depicts the 29-year period of anarchy at the end of the 3rd century in Greater Armenia, when King Khosrov is treacherously assassinated by Anak the Parthian, and Ardashir of the Sasanian dynasty, having conquered the Arsacid throne in Persia, turns his sights on Armenia.",
-            "ru": "Роман описывает 29-летний период безвластия в конце III века в Великой Армении, когда царь Хосров был вероломно убит Анаком Парфянином, а Арташир из династии Сасанидов, покорив Аршакидский трон в Персии, обратил взоры на Армению."
-          },
-          {
-            "hy": "Ստեղծված խառնաշփոթում հայոց նախարարներից շատերը, փախչելով երկրից, ապաստան են գտնում Հռոմում, իսկ մնացածը, հնազանդվելով Արտաշիրի իշխանությանը, մնում են նրա հպատակության ներքո։ Այս համայնապատկերում, Մանդակունիների տոհմից մի իշխանորդի, Կապադովկյան Կեսարիայից Հայք վերադառնալով, մահափորձ է կատարում պարսից կուսակալի դեմ...",
-            "en": "Amid the resulting turmoil, many Armenian nobles flee the country to seek refuge in Rome, while the rest submit to Ardashir's rule. Against this backdrop, a young lord of the Mandakuni clan returns from Cappadocian Caesarea to Armenia and makes an assassination attempt on the Persian governor…",
-            "ru": "В создавшемся хаосе многие армянские нахарары бегут из страны и находят убежище в Риме, тогда как оставшиеся покоряются власти Арташира. На этом фоне молодой господин из рода Мандакуни, вернувшись из Кесарии Каппадокийской в Армению, совершает покушение на персидского наместника…"
-          }
-        ],
-        "video": "",
-        "poster": "",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Հատված գրքից",
-              "en": "Excerpt from the Book",
-              "ru": "Отрывок из книги"
+        {
+            "image": "/images/and-there-were-light.webp",
+            "title": {
+                "hy": "Եւ եղաւ լոյս",
+                "en": "And There Was Light",
+                "ru": "И был свет"
             },
-            "images": [
-              {
-                "image": "/images/before-the-storm-page-0001.webp"
-              },
-              {
-                "image": "/images/before-the-storm-page-0002.webp"
-              },
-              {
-                "image": "/images/before-the-storm-page-0003.webp"
-              },
-              {
-                "image": "/images/before-the-storm-page-0004.webp"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "image": "/images/ajb-ke.webp",
-      "title": {
-        "hy": "Այբ Քէ",
-        "en": "Ayb-Ke",
-        "ru": "Айб-Ке"
-      },
-      "slug": "ayb-ke",
-      "page": true,
-      "detail": {
-        "bg": "/images/ajb-ke-bg.webp",
-        "genre": {
-          "hy": "աղոթական բանաստեղծությունների ժողովածու",
-          "en": "a collection of prayer poetry",
-          "ru": "сборник молитвенной поэзии"
+            "slug": "and-there-were-light",
+            "page": true,
+            "detail": {
+                "bg": "/images/and-there-were-light-bg.webp",
+                "genre": {
+                    "hy": "պատմավէպ",
+                    "en": "historical novel",
+                    "ru": "исторический роман"
+                },
+                "meta": {
+                    "hy": "«Ասողիկ» հրատարակչություն, 2019թ.",
+                    "en": "«Asoghik» Publishing, 2019",
+                    "ru": "Издательство «Асогик», 2019"
+                },
+                "paragraphs": [
+                    {
+                        "hy": "Այս վեպը առաջին դարի սկզբի Հայաստանում տեղի ունեցած պատմական անցուդարձի համառօտ անդրադարձն է՝ քրիստոնեական մտածողութեան դիրքերից։ Այստեղ պատմական փաստերը քաղուած են առաւելապէս Մովսէս Խորենացու «Հայոց Պատմութիւն»֊ից։",
+                        "en": "This novel is a brief reflection on the historical events that unfolded in Armenia at the beginning of the first century, viewed from a Christian perspective. The historical facts are drawn primarily from Moses of Khoren's History of the Armenians.",
+                        "ru": "Этот роман — краткое осмысление исторических событий, происходивших в Армении в начале I века, с позиций христианского мировоззрения. Исторические факты почерпнуты преимущественно из «Истории Армении» Мовсеса Хоренаци."
+                    },
+                    {
+                        "hy": "Գրքում նկարագրւում է, թէ ինչպիսի ծանր յետեւանք ունեցաւ Հռովմի կայսերական վերելքը հայկական տիրապետութեան վրայ, եւ թէ ինչպիսի իրավիճակում էր Եդեսիոյ Հայոց պետականութիւնը՝ Աբգար V թագաւորի օրօք։ Պալատական խարդաւանքներ, ազնուական վսեմապատումներ, քանարական֊սիրային պոռթկումներ՝ դիտարկած ազգային եւ կրօնական բուռն վայրիվերոյքի համայնապատկերում։",
+                        "en": "The novel portrays the grave consequences of Rome's imperial rise for Armenian sovereignty, and the situation of the Armenian Kingdom of Edessa under King Abgar V — palace intrigues, aristocratic chronicles, lyrical passions — all set against a backdrop of fierce national and religious upheaval.",
+                        "ru": "Роман повествует о тяжёлых последствиях имперского возвышения Рима для армянской государственности и о положении Эдесского армянского царства при царе Абгаре V — дворцовые интриги, аристократические хроники, лирические страсти — на фоне бурных национальных и религиозных потрясений."
+                    }
+                ],
+                "video": "",
+                "poster": "",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Հատված գրքից",
+                            "en": "Excerpt from the Book",
+                            "ru": "Отрывок из книги"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/yev-yeghav-loys-page-0001.webp"
+                            },
+                            {
+                                "image": "/images/yev-yeghav-loys-page-0002.webp"
+                            },
+                            {
+                                "image": "/images/yev-yeghav-loys-page-0003.webp"
+                            },
+                            {
+                                "image": "/images/yev-yeghav-loys-page-0004.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
         },
-        "meta": {
-          "hy": "«Ասողիկ» հրատարակչություն, 2014թ. · 2017թ. · 2018թ. · 2021թ.",
-          "en": "«Asoghik» Publishing, 2014 · 2017 · 2018 · 2021",
-          "ru": "Издательство «Асогик», 2014 · 2017 · 2018 · 2021"
-        },
-        "paragraphs": [
-          {
-            "hy": "Ես եմ Ալֆան եւ Օմեղան (ԱՅԲ–ը եւ ՔԷ-ն) [սկիզբը եւ վերջը] ասում է Տէրը, նա որ էր եւ որ է եւ որ գալու է, Ամենակալը: (Յայտն. 1.8)",
-            "en": "\"I am the Alpha and the Omega [Ayb and Ke — the beginning and the end],\" says the Lord, \"who is, and who was, and who is to come, the Almighty.\" (Rev. 1:8)",
-            "ru": "«Я есмь Альфа и Омега [Айб и Ке — начало и конец]», — говорит Господь, — «Который есть и был и грядёт, Вседержитель». (Откр. 1:8)"
-          },
-          {
-            "hy": "Այս ժողովածուն արտահայտում է քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես ապաշխարության և փառաբանության խոնարհ աղոթականչեր...",
-            "en": "This collection expresses a Christian's emotions and reflections addressed to the Creator God as humble prayers of repentance and praise…",
-            "ru": "Этот сборник выражает чувства и размышления христианина, обращённые к Богу-Творцу как смиренные молитвы покаяния и хвалы…"
-          }
-        ],
-        "video": "",
-        "poster": "",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Հատված գրքից",
-              "en": "Excerpt from the Book",
-              "ru": "Отрывок из книги"
+        {
+            "image": "/images/before-the-storm.webp",
+            "title": {
+                "hy": "Փոթորկից առաջ",
+                "en": "Before the Storm",
+                "ru": "Перед грозой"
             },
-            "images": [
-              {
-                "image": "/images/ajb-ke-page-0001.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0002.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0003.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0004.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0005.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0006.webp"
-              },
-              {
-                "image": "/images/ajb-ke-page-0007.webp"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "image": "/images/turkish.webp",
-      "title": {
-        "hy": "Yalnız Şahin (թուրքերեն)",
-        "en": "Yalnız Şahin (Turkish)",
-        "ru": ""
-      },
-      "slug": "yalniz-sahin",
-      "page": false,
-      "detail": {
-        "bg": "/images/books-bg.webp",
-        "genre": {
-          "hy": "",
-          "en": "",
-          "ru": ""
+            "slug": "before-the-storm",
+            "page": true,
+            "detail": {
+                "bg": "/images/before-the-storm-bg.webp",
+                "genre": {
+                    "hy": "պատմավեպ",
+                    "en": "historical novel",
+                    "ru": "исторический роман"
+                },
+                "meta": {
+                    "hy": "«Ասողիկ» հրատարակչություն, 2023թ.",
+                    "en": "«Asoghik» Publishing, 2023",
+                    "ru": "Издательство «Асогик», 2023"
+                },
+                "paragraphs": [
+                    {
+                        "hy": "Վեպը նկարագրում է 3-րդ դարի վերջին Մեծ Հայքի 29-ամյա անիշխանության շրջանը, երբ Անակ Պարթևի ձեռքով դավադրաբար սպանվում է Խոսրով արքան, իսկ Սասանորդի Արտաշիրը, Պարսկաստանում նվաճելով Արշակունիների հարստությունը դիմում է Հայաստան։",
+                        "en": "The novel depicts the 29-year period of anarchy at the end of the 3rd century in Greater Armenia, when King Khosrov is treacherously assassinated by Anak the Parthian, and Ardashir of the Sasanian dynasty, having conquered the Arsacid throne in Persia, turns his sights on Armenia.",
+                        "ru": "Роман описывает 29-летний период безвластия в конце III века в Великой Армении, когда царь Хосров был вероломно убит Анаком Парфянином, а Арташир из династии Сасанидов, покорив Аршакидский трон в Персии, обратил взоры на Армению."
+                    },
+                    {
+                        "hy": "Ստեղծված խառնաշփոթում հայոց նախարարներից շատերը, փախչելով երկրից, ապաստան են գտնում Հռոմում, իսկ մնացածը, հնազանդվելով Արտաշիրի իշխանությանը, մնում են նրա հպատակության ներքո։ Այս համայնապատկերում, Մանդակունիների տոհմից մի իշխանորդի, Կապադովկյան Կեսարիայից Հայք վերադառնալով, մահափորձ է կատարում պարսից կուսակալի դեմ...",
+                        "en": "Amid the resulting turmoil, many Armenian nobles flee the country to seek refuge in Rome, while the rest submit to Ardashir's rule. Against this backdrop, a young lord of the Mandakuni clan returns from Cappadocian Caesarea to Armenia and makes an assassination attempt on the Persian governor…",
+                        "ru": "В создавшемся хаосе многие армянские нахарары бегут из страны и находят убежище в Риме, тогда как оставшиеся покоряются власти Арташира. На этом фоне молодой господин из рода Мандакуни, вернувшись из Кесарии Каппадокийской в Армению, совершает покушение на персидского наместника…"
+                    }
+                ],
+                "video": "",
+                "poster": "",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Հատված գրքից",
+                            "en": "Excerpt from the Book",
+                            "ru": "Отрывок из книги"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/before-the-storm-page-0001.webp"
+                            },
+                            {
+                                "image": "/images/before-the-storm-page-0002.webp"
+                            },
+                            {
+                                "image": "/images/before-the-storm-page-0003.webp"
+                            },
+                            {
+                                "image": "/images/before-the-storm-page-0004.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
         },
-        "meta": {
-          "hy": "",
-          "en": "",
-          "ru": ""
+        {
+            "image": "/images/ajb-ke.webp",
+            "title": {
+                "hy": "Այբ Քէ",
+                "en": "Ayb-Ke",
+                "ru": "Айб-Ке"
+            },
+            "slug": "ayb-ke",
+            "page": true,
+            "detail": {
+                "bg": "/images/ajb-ke-bg.webp",
+                "genre": {
+                    "hy": "աղոթական բանաստեղծությունների ժողովածու",
+                    "en": "a collection of prayer poetry",
+                    "ru": "сборник молитвенной поэзии"
+                },
+                "meta": {
+                    "hy": "«Ասողիկ» հրատարակչություն, 2014թ. · 2017թ. · 2018թ. · 2021թ.",
+                    "en": "«Asoghik» Publishing, 2014 · 2017 · 2018 · 2021",
+                    "ru": "Издательство «Асогик», 2014 · 2017 · 2018 · 2021"
+                },
+                "paragraphs": [
+                    {
+                        "hy": "Ես եմ Ալֆան եւ Օմեղան (ԱՅԲ–ը եւ ՔԷ-ն) [սկիզբը եւ վերջը] ասում է Տէրը, նա որ էր եւ որ է եւ որ գալու է, Ամենակալը: (Յայտն. 1.8)",
+                        "en": "\"I am the Alpha and the Omega [Ayb and Ke — the beginning and the end],\" says the Lord, \"who is, and who was, and who is to come, the Almighty.\" (Rev. 1:8)",
+                        "ru": "«Я есмь Альфа и Омега [Айб и Ке — начало и конец]», — говорит Господь, — «Который есть и был и грядёт, Вседержитель». (Откр. 1:8)"
+                    },
+                    {
+                        "hy": "Այս ժողովածուն արտահայտում է քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես ապաշխարության և փառաբանության խոնարհ աղոթականչեր...",
+                        "en": "This collection expresses a Christian's emotions and reflections addressed to the Creator God as humble prayers of repentance and praise…",
+                        "ru": "Этот сборник выражает чувства и размышления христианина, обращённые к Богу-Творцу как смиренные молитвы покаяния и хвалы…"
+                    }
+                ],
+                "video": "",
+                "poster": "",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Հատված գրքից",
+                            "en": "Excerpt from the Book",
+                            "ru": "Отрывок из книги"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/ajb-ke-page-0001.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0002.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0003.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0004.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0005.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0006.webp"
+                            },
+                            {
+                                "image": "/images/ajb-ke-page-0007.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
         },
-        "paragraphs": [],
-        "video": "",
-        "poster": "",
-        "hero": "",
-        "sections": []
-      }
+        {
+            "image": "/images/turkish.webp",
+            "title": {
+                "hy": "Yalnız Şahin (թուրքերեն)",
+                "en": "Yalnız Şahin (Turkish)",
+                "ru": ""
+            },
+            "slug": "yalniz-sahin",
+            "page": false,
+            "detail": {
+                "bg": "/images/books-bg.webp",
+                "genre": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "meta": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "paragraphs": [],
+                "video": "",
+                "poster": "",
+                "hero": "",
+                "sections": []
+            }
+        }
+    ],
+    "films": [
+        {
+            "image": "/images/garden-of-eden.webp",
+            "title": {
+                "hy": "Եդեմի Պարտեզը",
+                "en": "Garden of Eden",
+                "ru": "Сад Эдема"
+            },
+            "slug": "garden-of-eden",
+            "page": true,
+            "detail": {
+                "bg": "/images/khnous.webp",
+                "genre": {
+                    "hy": "սիրողական ֆիլմ",
+                    "en": "amateur documentary",
+                    "ru": "любительский документальный фильм"
+                },
+                "meta": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "paragraphs": [],
+                "video": "Gkn4Cx4xCkA",
+                "poster": "/images/garden-of-eden-dvd.webp",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Միջոցառումներ",
+                            "en": "Events",
+                            "ru": "Мероприятия"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/garden-of-eden/1.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/2.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/3.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/4.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/5.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/6.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/7.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/8.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/9.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/10.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/11.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/12.webp"
+                            },
+                            {
+                                "image": "/images/garden-of-eden/13.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "image": "/images/road-back-home-dvd.webp",
+            "title": {
+                "hy": "Տունդարձի ճամփան",
+                "en": "The Road Back Home",
+                "ru": "Дорога домой"
+            },
+            "slug": "road-back-home",
+            "page": true,
+            "detail": {
+                "bg": "/images/khnous2.webp",
+                "genre": {
+                    "hy": "սիրողական ֆիլմ",
+                    "en": "amateur documentary",
+                    "ru": "любительский документальный фильм"
+                },
+                "meta": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "paragraphs": [],
+                "video": "MG9Wab6F_g4",
+                "poster": "/images/road-back-home-dvd.webp",
+                "hero": "",
+                "sections": [
+                    {
+                        "label": {
+                            "hy": "Միջոցառումներ",
+                            "en": "Events",
+                            "ru": "Мероприятия"
+                        },
+                        "images": [
+                            {
+                                "image": "/images/road-back-home/1.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/2.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/3.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/4.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/5.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/6.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/7.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/8.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/9.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/10.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/11.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/12.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/13.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/14.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/15.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/16.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/17.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/18.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/20.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/21.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/23.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/24.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/25.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/26.webp"
+                            },
+                            {
+                                "image": "/images/road-back-home/28.webp"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "image": "/images/film-project.webp",
+            "title": {
+                "hy": "Կինոպրոյեկտ",
+                "en": "Film Project",
+                "ru": "Кинопроект"
+            },
+            "slug": "film-project",
+            "page": true,
+            "detail": {
+                "bg": "/images/films-bg.webp",
+                "genre": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "meta": {
+                    "hy": "",
+                    "en": "",
+                    "ru": ""
+                },
+                "paragraphs": [],
+                "video": "",
+                "poster": "",
+                "hero": "/images/film-project-html.webp",
+                "sections": []
+            }
+        }
+    ],
+    "gallery": [
+        {
+            "image": "/images/gallery/19.webp"
+        },
+        {
+            "image": "/images/gallery/29.webp"
+        },
+        {
+            "image": "/images/gallery/21.webp"
+        },
+        {
+            "image": "/images/gallery/28.webp"
+        },
+        {
+            "image": "/images/gallery/22.webp"
+        },
+        {
+            "image": "/images/gallery/27.webp"
+        },
+        {
+            "image": "/images/gallery/2.webp"
+        },
+        {
+            "image": "/images/gallery/3.webp"
+        },
+        {
+            "image": "/images/gallery/4.webp"
+        },
+        {
+            "image": "/images/gallery/5.webp"
+        },
+        {
+            "image": "/images/gallery/6.webp"
+        },
+        {
+            "image": "/images/gallery/7.webp"
+        },
+        {
+            "image": "/images/gallery/8.webp"
+        },
+        {
+            "image": "/images/gallery/9.webp"
+        },
+        {
+            "image": "/images/gallery/10.webp"
+        },
+        {
+            "image": "/images/gallery/11.webp"
+        },
+        {
+            "image": "/images/gallery/12.webp"
+        },
+        {
+            "image": "/images/gallery/13.webp"
+        },
+        {
+            "image": "/images/gallery/14.webp"
+        },
+        {
+            "image": "/images/gallery/15.webp"
+        },
+        {
+            "image": "/images/gallery/16.webp"
+        },
+        {
+            "image": "/images/gallery/17.webp"
+        },
+        {
+            "image": "/images/gallery/18.webp"
+        },
+        {
+            "image": "/images/gallery/20.webp"
+        },
+        {
+            "image": "/images/gallery/23.webp"
+        },
+        {
+            "image": "/images/gallery/24.webp"
+        },
+        {
+            "image": "/images/gallery/25.webp"
+        },
+        {
+            "image": "/images/gallery/26.webp"
+        },
+        {
+            "image": "/images/gallery/30.webp"
+        },
+        {
+            "image": "/images/gallery/31.webp"
+        },
+        {
+            "image": "/images/gallery/32.webp"
+        },
+        {
+            "image": "/images/gallery/33.webp"
+        },
+        {
+            "image": "/images/gallery/34.webp"
+        },
+        {
+            "image": "/images/gallery/35.webp"
+        },
+        {
+            "image": "/images/gallery/36.webp"
+        },
+        {
+            "image": "/images/gallery/37.webp"
+        },
+        {
+            "image": "/images/gallery/38.webp"
+        },
+        {
+            "image": "/images/gallery/39.webp"
+        },
+        {
+            "image": "/images/gallery/40.webp"
+        },
+        {
+            "image": "/images/gallery/41.webp"
+        },
+        {
+            "image": "/images/gallery/42.webp"
+        },
+        {
+            "image": "/images/gallery/43.webp"
+        },
+        {
+            "image": "/images/gallery/44.webp"
+        },
+        {
+            "image": "/images/gallery/45.webp"
+        },
+        {
+            "image": "/images/gallery/46.webp"
+        },
+        {
+            "image": "/images/gallery/47.webp"
+        },
+        {
+            "image": "/images/gallery/48.webp"
+        },
+        {
+            "image": "/images/gallery/49.webp"
+        },
+        {
+            "image": "/images/gallery/50.webp"
+        },
+        {
+            "image": "/images/gallery/51.webp"
+        },
+        {
+            "image": "/images/gallery/52.webp"
+        },
+        {
+            "image": "/images/gallery/53.webp"
+        },
+        {
+            "image": "/images/gallery/55.webp"
+        },
+        {
+            "image": "/images/gallery/54.webp"
+        }
+    ],
+    "contact": {
+        "facebook": {
+            "url": "https://www.facebook.com/samvel.mheryan",
+            "name": {
+                "hy": "Սամվել Մհերյան",
+                "en": "Samvel Mheryan",
+                "ru": "Самвел Мгерян"
+            }
+        },
+        "email": {
+            "address": "contact@samvelmheryan.am"
+        },
+        "linkedin": {
+            "url": "https://www.linkedin.com/in/samvel-mheryan-5953b4178/",
+            "name": {
+                "hy": "Սամվել Մհերյան",
+                "en": "Samvel Mheryan",
+                "ru": "Самвел Мгерян"
+            }
+        }
     }
-  ],
-  "films": [
-    {
-      "image": "/images/garden-of-eden.webp",
-      "title": {
-        "hy": "Եդեմի Պարտեզը",
-        "en": "Garden of Eden",
-        "ru": "Сад Эдема"
-      },
-      "slug": "garden-of-eden",
-      "page": true,
-      "detail": {
-        "bg": "/images/khnous.webp",
-        "genre": {
-          "hy": "սիրողական ֆիլմ",
-          "en": "amateur documentary",
-          "ru": "любительский документальный фильм"
-        },
-        "meta": {
-          "hy": "",
-          "en": "",
-          "ru": ""
-        },
-        "paragraphs": [],
-        "video": "Gkn4Cx4xCkA",
-        "poster": "/images/garden-of-eden-dvd.webp",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Միջոցառումներ",
-              "en": "Events",
-              "ru": "Мероприятия"
-            },
-            "images": [
-              {
-                "image": "/images/garden-of-eden/1.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/2.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/3.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/4.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/5.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/6.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/7.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/8.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/9.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/10.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/11.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/12.webp"
-              },
-              {
-                "image": "/images/garden-of-eden/13.webp"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "image": "/images/road-back-home-dvd.webp",
-      "title": {
-        "hy": "Տունդարձի ճամփան",
-        "en": "The Road Back Home",
-        "ru": "Дорога домой"
-      },
-      "slug": "road-back-home",
-      "page": true,
-      "detail": {
-        "bg": "/images/khnous2.webp",
-        "genre": {
-          "hy": "սիրողական ֆիլմ",
-          "en": "amateur documentary",
-          "ru": "любительский документальный фильм"
-        },
-        "meta": {
-          "hy": "",
-          "en": "",
-          "ru": ""
-        },
-        "paragraphs": [],
-        "video": "MG9Wab6F_g4",
-        "poster": "/images/road-back-home-dvd.webp",
-        "hero": "",
-        "sections": [
-          {
-            "label": {
-              "hy": "Միջոցառումներ",
-              "en": "Events",
-              "ru": "Мероприятия"
-            },
-            "images": [
-              {
-                "image": "/images/road-back-home/1.webp"
-              },
-              {
-                "image": "/images/road-back-home/2.webp"
-              },
-              {
-                "image": "/images/road-back-home/3.webp"
-              },
-              {
-                "image": "/images/road-back-home/4.webp"
-              },
-              {
-                "image": "/images/road-back-home/5.webp"
-              },
-              {
-                "image": "/images/road-back-home/6.webp"
-              },
-              {
-                "image": "/images/road-back-home/7.webp"
-              },
-              {
-                "image": "/images/road-back-home/8.webp"
-              },
-              {
-                "image": "/images/road-back-home/9.webp"
-              },
-              {
-                "image": "/images/road-back-home/10.webp"
-              },
-              {
-                "image": "/images/road-back-home/11.webp"
-              },
-              {
-                "image": "/images/road-back-home/12.webp"
-              },
-              {
-                "image": "/images/road-back-home/13.webp"
-              },
-              {
-                "image": "/images/road-back-home/14.webp"
-              },
-              {
-                "image": "/images/road-back-home/15.webp"
-              },
-              {
-                "image": "/images/road-back-home/16.webp"
-              },
-              {
-                "image": "/images/road-back-home/17.webp"
-              },
-              {
-                "image": "/images/road-back-home/18.webp"
-              },
-              {
-                "image": "/images/road-back-home/20.webp"
-              },
-              {
-                "image": "/images/road-back-home/21.webp"
-              },
-              {
-                "image": "/images/road-back-home/23.webp"
-              },
-              {
-                "image": "/images/road-back-home/24.webp"
-              },
-              {
-                "image": "/images/road-back-home/25.webp"
-              },
-              {
-                "image": "/images/road-back-home/26.webp"
-              },
-              {
-                "image": "/images/road-back-home/28.webp"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "image": "/images/film-project.webp",
-      "title": {
-        "hy": "Կինոպրոյեկտ",
-        "en": "Film Project",
-        "ru": "Кинопроект"
-      },
-      "slug": "film-project",
-      "page": true,
-      "detail": {
-        "bg": "/images/films-bg.webp",
-        "genre": {
-          "hy": "",
-          "en": "",
-          "ru": ""
-        },
-        "meta": {
-          "hy": "",
-          "en": "",
-          "ru": ""
-        },
-        "paragraphs": [],
-        "video": "",
-        "poster": "",
-        "hero": "/images/film-project-html.webp",
-        "sections": []
-      }
-    }
-  ],
-  "gallery": [
-    {
-      "image": "/images/gallery/19.webp"
-    },
-    {
-      "image": "/images/gallery/29.webp"
-    },
-    {
-      "image": "/images/gallery/21.webp"
-    },
-    {
-      "image": "/images/gallery/28.webp"
-    },
-    {
-      "image": "/images/gallery/22.webp"
-    },
-    {
-      "image": "/images/gallery/27.webp"
-    },
-    {
-      "image": "/images/gallery/2.webp"
-    },
-    {
-      "image": "/images/gallery/3.webp"
-    },
-    {
-      "image": "/images/gallery/4.webp"
-    },
-    {
-      "image": "/images/gallery/5.webp"
-    },
-    {
-      "image": "/images/gallery/6.webp"
-    },
-    {
-      "image": "/images/gallery/7.webp"
-    },
-    {
-      "image": "/images/gallery/8.webp"
-    },
-    {
-      "image": "/images/gallery/9.webp"
-    },
-    {
-      "image": "/images/gallery/10.webp"
-    },
-    {
-      "image": "/images/gallery/11.webp"
-    },
-    {
-      "image": "/images/gallery/12.webp"
-    },
-    {
-      "image": "/images/gallery/13.webp"
-    },
-    {
-      "image": "/images/gallery/14.webp"
-    },
-    {
-      "image": "/images/gallery/15.webp"
-    },
-    {
-      "image": "/images/gallery/16.webp"
-    },
-    {
-      "image": "/images/gallery/17.webp"
-    },
-    {
-      "image": "/images/gallery/18.webp"
-    },
-    {
-      "image": "/images/gallery/20.webp"
-    },
-    {
-      "image": "/images/gallery/23.webp"
-    },
-    {
-      "image": "/images/gallery/24.webp"
-    },
-    {
-      "image": "/images/gallery/25.webp"
-    },
-    {
-      "image": "/images/gallery/26.webp"
-    },
-    {
-      "image": "/images/gallery/30.webp"
-    },
-    {
-      "image": "/images/gallery/31.webp"
-    },
-    {
-      "image": "/images/gallery/32.webp"
-    },
-    {
-      "image": "/images/gallery/33.webp"
-    },
-    {
-      "image": "/images/gallery/34.webp"
-    },
-    {
-      "image": "/images/gallery/35.webp"
-    },
-    {
-      "image": "/images/gallery/36.webp"
-    },
-    {
-      "image": "/images/gallery/37.webp"
-    },
-    {
-      "image": "/images/gallery/38.webp"
-    },
-    {
-      "image": "/images/gallery/39.webp"
-    },
-    {
-      "image": "/images/gallery/40.webp"
-    },
-    {
-      "image": "/images/gallery/41.webp"
-    },
-    {
-      "image": "/images/gallery/42.webp"
-    },
-    {
-      "image": "/images/gallery/43.webp"
-    },
-    {
-      "image": "/images/gallery/44.webp"
-    },
-    {
-      "image": "/images/gallery/45.webp"
-    },
-    {
-      "image": "/images/gallery/46.webp"
-    },
-    {
-      "image": "/images/gallery/47.webp"
-    },
-    {
-      "image": "/images/gallery/48.webp"
-    },
-    {
-      "image": "/images/gallery/49.webp"
-    },
-    {
-      "image": "/images/gallery/50.webp"
-    },
-    {
-      "image": "/images/gallery/51.webp"
-    },
-    {
-      "image": "/images/gallery/52.webp"
-    },
-    {
-      "image": "/images/gallery/53.webp"
-    },
-    {
-      "image": "/images/gallery/54.webp"
-    },
-    {
-      "image": "/images/gallery/55.webp"
-    }
-  ],
-  "contact": {
-    "facebook": {
-      "url": "https://www.facebook.com/samvel.mheryan",
-      "name": {
-        "hy": "Սամվել Մհերյան",
-        "en": "Samvel Mheryan",
-        "ru": "Самвел Мгерян"
-      }
-    },
-    "email": {
-      "address": "contact@samvelmheryan.am"
-    },
-    "linkedin": {
-      "url": "https://www.linkedin.com/in/samvel-mheryan-5953b4178/",
-      "name": {
-        "hy": "Սամվել Մհերյան",
-        "en": "Samvel Mheryan",
-        "ru": "Самвел Мгерян"
-      }
-    }
-  },
-  "bio": {
-    "paragraphs": [
-      {
-        "hy": "Մհերյանը գրական և մշակութային իր գործունեությամբ հասարակությանը հայտնի է առավելապես իր հեղինակած «Մենավոր բազեն», «Եւ եղաւ լոյս», «Փոթորկից առաջ» պատմավեպերով, ինչպես նաև «Եդեմի պարտեզը» և «Տունդարձի ճամփան» փաստագրական ֆիլմերով: Նրա կատարած աշխատանքներն են «Ճշմարիտ Լույսը» և «Այբ-Քէ» բանաստեղծությունների ժողովածուները, որոնք արտահայտում են քրիստոնյայի հուզերն ու մտորումները՝ ուղղված Արարիչ Աստծուն որպես ապաշխարության և փառաբանության խոնարհ աղոթականչեր...",
-        "en": "Mheryan is known to the public primarily through his historical novels The Lonely Eagle, And There Was Light, and Before the Storm, as well as the documentary films Garden of Eden and Road Back Home. His other works include the poetry collections The True Light and Ayb-Ke, which express a Christian's emotions and reflections addressed to the Creator God as humble prayers of repentance and praise…",
-        "ru": "Мгерян известен широкой общественности прежде всего своими историческими романами «Одинокий орёл», «И был свет» и «Перед грозой», а также документальными фильмами «Сад Эдема» и «Дорога домой». В числе его произведений — сборники стихотворений «Истинный свет» и «Айб-Ке», выражающие чувства и размышления христианина, обращённые к Богу-Творцу как смиренные молитвы покаяния и хвалы…"
-      },
-      {
-        "hy": "«Մենավոր Բազեն» պատմավեպը, որը տեխնիկական կրթություն ստացած Մհերյանի առաջին քայլն է գրականության մեջ, լույս ընծայվեց, երբ հեղինակը 28 տարեկան էր: Գրքի 120 կերպարներից մեծ մասը իրական են, որոնցից շատերի ժառանգները համախմբվելով մեկ գաղափարի շուրջ, 2005թ.-ի փետրվարին՝ Զորավար Անդրանիկի ծննդյան 140 ամյակի օրը հիմնադրում են «Խնուս» մշակութային հիմնադրամը:",
-        "en": "The Lonely Eagle, the literary debut of the technically educated Mheryan, was published when the author was 28 years old. The majority of the novel's 120 characters are real people, and many of their descendants, united around a common idea, founded the «Khnus» Cultural Foundation in February 2005 on the 140th anniversary of the birth of General Andranik.",
-        "ru": "«Одинокий орёл» — литературный дебют Мгеряна, получившего техническое образование, — был опубликован, когда автору исполнилось 28 лет. Большинство из 120 персонажей романа являются реальными людьми, и многие из их потомков, объединившись вокруг общей идеи, в феврале 2005 года, в день 140-летия со дня рождения полководца Андраника, основали Культурный фонд «Хнус»."
-      },
-      {
-        "hy": "Գրիքը երկու հրատարակությամբ (Samvel Mheryan «Yalniz Sahin», Fam Yayinlari, Istanbul 2018, 2020թթ.), թուրքերեն լեզվով լույս է ընծայուել Թուրքիայում և վաճառվում է Կ. Պոլսի գրախանութներում:",
-        "en": "The novel has been published in Turkish in two editions (Samvel Mheryan, Yalnız Şahin, Fam Yayınları, Istanbul 2018 and 2020) and is sold in bookstores in Istanbul.",
-        "ru": "Роман вышел на турецком языке в двух изданиях (Самвел Мгерян, Yalnız Şahin, Fam Yayınları, Стамбул, 2018 и 2020) и продаётся в книжных магазинах Стамбула."
-      }
-    ]
-  }
 }
