@@ -14,6 +14,9 @@ generates `/<slug>` from the card's `detail` block (subtitle, details line, para
 sections). Page addresses of existing items are kept; new items get a generated address (`book-…` / `film-…`).
 Never rename or hand-edit slugs in `content/site.json` without updating links that point to them.
 
+**Banner links:** each banner can optionally link to one of the site's book/film pages, a home-page section, the
+gallery page, or any `https://` address (opens in a new tab). Empty = not clickable.
+
 **Languages:** the site and admin are Armenian-only for now. `content/site.json` still stores `en`/`ru` text next to
 every Armenian string and the admin preserves it on save, so enabling the language switcher later only needs the
 `admin-panel-i18n` branch (switcher + EN/RU boxes in the admin).

@@ -1,20 +1,28 @@
 ---
 interface Props {
-  slides: { src: string; alt: string }[];
+  slides: { src: string; alt: string; href?: string }[];
 }
 const { slides } = Astro.props;
 ---
 <div class="banner-carousel" aria-label="Լուրեր">
   <div class="carousel-track" id="carousel-track">
-    {slides.map((s, i) => (
-      <div
-        class="carousel-slide"
-        style={`background-image:url('${s.src}')`}
-        role="img"
-        aria-label={s.alt}
-        aria-hidden={i !== 0 ? 'true' : undefined}
-      />
-    ))}
+    {slides.map((s, i) => {
+      const Tag = s.href ? 'a' : 'div';
+      const external = s.href?.startsWith('http');
+      return (
+        <Tag
+          class="carousel-slide"
+          style={`background-image:url('${s.src}')`}
+          role={s.href ? undefined : 'img'}
+          aria-label={s.alt}
+          aria-hidden={i !== 0 ? 'true' : undefined}
+          href={s.href || undefined}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener' : undefined}
+          tabindex={s.href && i !== 0 ? '-1' : undefined}
+        />
+      );
+    })}
   </div>
 
   <button class="carousel-btn prev" aria-label="Նախորդ">&#8249;</button>
@@ -48,6 +56,8 @@ const { slides } = Astro.props;
     });
     Array.from(track.children).forEach((slide, i) => {
       (slide as HTMLElement).setAttribute('aria-hidden', i !== current ? 'true' : 'false');
+      // hidden slides must not be reachable with the keyboard
+      if (slide.tagName === 'A') (slide as HTMLElement).tabIndex = i === current ? 0 : -1;
     });
   }
 

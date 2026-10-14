@@ -1,13 +1,16 @@
 {
     "banners": [
         {
-            "image": "/images/banner1.webp"
+            "image": "/images/banner1.webp",
+            "href": ""
         },
         {
-            "image": "/images/banner2.webp"
+            "image": "/images/banner2.webp",
+            "href": ""
         },
         {
-            "image": "/images/banner3.webp"
+            "image": "/images/banner3.webp",
+            "href": ""
         }
     ],
     "bio": {

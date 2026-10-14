@@ -494,6 +494,43 @@
     return wrap;
   }
 
+  var SITE_LINKS = [
+    ['/#books', 'Գլխավոր էջ՝ Գրքեր բաժին'],
+    ['/#film', 'Գլխավոր էջ՝ Ֆիլմագրություն բաժին'],
+    ['/#gallery', 'Գլխավոր էջ՝ Պատկերասրահ բաժին'],
+    ['/#contact', 'Գլխավոր էջ՝ Կապ բաժին'],
+    ['/gallery', 'Պատկերասրահի էջ']
+  ];
+
+  /** Where a banner leads when clicked: nothing, one of the site's own pages, or any https:// address. */
+  function linkField(item) {
+    var c = state.content;
+    var options = [['', 'Առանց հղման (սեղմելիս ոչինչ չի լինում)']];
+    c.books.filter(function (b) { return b.page; }).forEach(function (b) { options.push(['/' + b.slug, 'Գիրք՝ ' + b.title.hy]); });
+    c.films.filter(function (f) { return f.page; }).forEach(function (f) { options.push(['/' + f.slug, 'Ֆիլմ՝ ' + f.title.hy]); });
+    options = options.concat(SITE_LINKS);
+    var known = options.some(function (o) { return o[0] === (item.href || ''); });
+    if (item._custom === undefined) item._custom = !!item.href && !known;
+    var sel = h('select', {}, options.concat([['__custom', 'Այլ կայքի հասցե…']]).map(function (o) {
+      var on = item._custom ? o[0] === '__custom' : o[0] === (item.href || '');
+      return h('option', { value: o[0], selected: on }, o[1]);
+    }));
+    sel.addEventListener('change', function () {
+      item._custom = sel.value === '__custom';
+      item.href = item._custom ? '' : sel.value;
+      markDirty();
+      render();
+    });
+    var url = null;
+    if (item._custom) {
+      url = h('input', { type: 'url', placeholder: 'https://…', value: item.href || '', 'data-required': '1' });
+      url.addEventListener('input', function () { item.href = url.value.trim(); url.classList.remove('invalid'); markDirty(); });
+    }
+    return h('div', { class: 'fields' },
+      h('label', { class: 'field' }, h('span', {}, 'Հղում (ըստ ցանկության)՝ ուր տանի բաններին սեղմելիս'), sel),
+      url ? h('label', { class: 'field' }, h('span', {}, 'Կայքի հասցե (պետք է սկսվի https://-ով)'), url) : null);
+  }
+
   function renderBanners() {
     var list = state.content.banners;
     var wrap = h('div', {});
@@ -501,17 +538,17 @@
     list.forEach(function (item, i) {
       var el = h('div', { class: 'item banner' },
         thumbFor(item, 'image', 'banners', true),
-        h('div', {}, h('strong', {}, 'Բաններ ' + (i + 1))),
+        h('div', { class: 'fields' }, h('strong', {}, 'Բաններ ' + (i + 1)), linkField(item)),
         h('div', { class: 'row-actions' },
           moveButtons(list, i),
           h('button', { class: 'btn small danger', disabled: list.length <= 1, onclick: function () { remove(list, i, 'այս բանները'); } }, 'Ջնջել')));
       makeDraggable(el, list, i);
       listEl.appendChild(el);
     });
-    wrap.appendChild(h('p', { class: 'hint' }, 'Գլխավոր էջի սլայդերի նկարները։ ' + shapeHint('banners') + ' Լավագույնն է լայն նկար ընտրել, որ քիչ կտրվի։'));
+    wrap.appendChild(h('p', { class: 'hint' }, 'Գլխավոր էջի սլայդերի նկարները։ Յուրաքանչյուրին կարելի է հղում ավելացնել։ ' + shapeHint('banners') + ' Լավագույնն է լայն նկար ընտրել, որ քիչ կտրվի։'));
     wrap.appendChild(listEl);
     wrap.appendChild(h('div', { class: 'add-bar' },
-      h('button', { class: 'btn primary', onclick: function () { addPhotos(list, 'banners', function (url) { return { image: url }; }); } }, '+ Ավելացնել բաններ')));
+      h('button', { class: 'btn primary', onclick: function () { addPhotos(list, 'banners', function (url) { return { image: url, href: '' }; }); } }, '+ Ավելացնել բաններ')));
     return wrap;
   }
 
@@ -583,8 +620,12 @@
   /** Returns { tab, where, open? } for the first problem, or null. Checks the data, not the DOM. */
   function findProblem() {
     var c = state.content, found = null;
-    function bad(tab, where, open) { if (!found) found = { tab: tab, where: where, open: open }; }
+    function bad(tab, where, open, full) { if (!found) found = { tab: tab, where: where, open: open, full: full }; }
 
+    c.banners.forEach(function (b, i) {
+      var link = (b.href || '').trim();
+      if (b._custom && !/^https:\/\/\S+$/.test(link)) bad('banners', '', null, 'Բաններ №' + (i + 1) + '. կայքի հասցեն պետք է սկսվի https://-ով');
+    });
     c.bio.paragraphs.forEach(function (p, i) {
       if (blank(p)) bad('bio', 'Կենսագրություն, պարբերություն ' + (i + 1));
     });
@@ -616,7 +657,7 @@
     document.querySelectorAll('[data-required]').forEach(function (el) {
       if (!el.value.trim()) el.classList.add('invalid');
     });
-    toast('Լրացրեք հայերեն տեքստը՝ ' + p.where, 'error');
+    toast(p.full || 'Լրացրեք հայերեն տեքստը՝ ' + p.where, 'error');
     var first = document.querySelector('.invalid');
     if (first && first.scrollIntoView) first.scrollIntoView({ block: 'center' });
     return false;
