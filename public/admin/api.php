@@ -191,6 +191,19 @@ function clean_youtube(mixed $v): string
     fail('The YouTube link is not valid.');
 }
 
+/** Optional link: empty, a site-internal path (/book-slug, /#gallery) or an https:// URL. */
+function clean_link(mixed $v, string $label): string
+{
+    $v = is_string($v) ? trim($v) : '';
+    if ($v === '') {
+        return '';
+    }
+    if (preg_match('~^/[A-Za-z0-9._/#-]*$~', $v) && !str_starts_with($v, '//')) {
+        return $v;
+    }
+    return clean_url($v, $label);
+}
+
 function clean_url(mixed $v, string $label): string
 {
     $v = is_string($v) ? trim($v) : '';
@@ -232,8 +245,11 @@ function clean_content(mixed $in): array
     }
 
     $banners = [];
-    foreach (clean_list($in['banners'] ?? [], 'Banners') as $b) {
-        $banners[] = ['image' => clean_image($b['image'] ?? null)];
+    foreach (clean_list($in['banners'] ?? [], 'Banners') as $i => $b) {
+        $banners[] = [
+            'image' => clean_image($b['image'] ?? null),
+            'href' => clean_link($b['href'] ?? '', 'Banner #' . ($i + 1)),
+        ];
     }
     if (!$banners) {
         fail('Banners: at least one banner is required.');

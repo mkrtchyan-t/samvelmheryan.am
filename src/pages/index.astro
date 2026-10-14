@@ -7,7 +7,7 @@ import site from '../../content/site.json';
 
 const { banners, books, films, gallery, contact, bio } = site;
 
-const carouselSlides = banners.map((b, i) => ({ src: b.image, alt: `Նկար ${i + 1}` }));
+const carouselSlides = banners.map((b, i) => ({ src: b.image, alt: `Նկար ${i + 1}`, href: b.href || undefined }));
 const galleryPreview = gallery.slice(0, 6);
 ---
 
